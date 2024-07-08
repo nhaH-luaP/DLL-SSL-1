@@ -1,0 +1,18 @@
+defaults:
+  - _self_
+  - model: vit17
+
+device: cuda
+dataset: cifar10
+random_seed: 42
+trust_remote_code: True
+
+path:
+  output_dir: ./output
+  data_dir: ./data
+  model_dir: ./storage/pretrained_models
+
+
+hydra:
+  run:
+    dir: ${path.output_dir}
