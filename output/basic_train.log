@@ -208,3 +208,434 @@ model:
 [2024-07-08 16:54:18,091][root][INFO] - >>> Initialize Model vit_17.
 [2024-07-08 16:54:19,435][birdset.datamodule.base_datamodule][INFO] - Check if preparing has already been done.
 [2024-07-08 16:54:19,435][birdset.datamodule.base_datamodule][INFO] - Skip preparing.
+[2024-07-08 18:23:49,535][root][INFO] - >>> Using config: 
+device: cuda
+dataset: cifar10
+random_seed: 42
+trust_remote_code: true
+path:
+  output_dir: ./output
+  data_dir: ./data
+  model_dir: ./storage/pretrained_models
+model:
+  name: vit_17
+
+[2024-07-08 18:23:49,536][root][INFO] - >>> Creating output directory at: ./output
+[2024-07-08 18:23:49,536][root][INFO] - >>> Seed experiment with random seed {args.random_seed}.
+[2024-07-08 18:23:49,537][root][INFO] - >>> Initialize Dataset cifar10.
+[2024-07-08 18:23:49,538][birdset.datamodule.base_datamodule][INFO] - Check if preparing has already been done.
+[2024-07-08 18:23:49,538][birdset.datamodule.base_datamodule][INFO] - Prepare Data
+[2024-07-08 18:23:49,538][birdset.datamodule.base_datamodule][INFO] - > Loading data set.
+[2024-07-08 18:43:42,696][root][INFO] - >>> Using config: 
+device: cuda
+dataset: cifar10
+random_seed: 42
+trust_remote_code: true
+path:
+  output_dir: ./output
+  data_dir: ./data
+  model_dir: ./storage/pretrained_models
+model:
+  name: vit_17
+
+[2024-07-08 18:43:42,697][root][INFO] - >>> Creating output directory at: ./output
+[2024-07-08 18:43:42,697][root][INFO] - >>> Seed experiment with random seed {args.random_seed}.
+[2024-07-08 18:43:42,699][root][INFO] - >>> Initialize Dataset cifar10.
+[2024-07-08 18:43:42,699][birdset.datamodule.base_datamodule][INFO] - Check if preparing has already been done.
+[2024-07-08 18:43:42,699][birdset.datamodule.base_datamodule][INFO] - Prepare Data
+[2024-07-08 18:43:42,699][birdset.datamodule.base_datamodule][INFO] - > Loading data set.
+[2024-07-08 18:46:17,131][datasets.builder][WARNING] - Setting num_proc from 3 back to 1 for the test_5s split to disable multiprocessing as it only contains one shard.
+[2024-07-08 18:46:48,578][birdset.datamodule.birdset_datamodule][INFO] - >> Mapping train data.
+[2024-07-08 18:46:54,763][birdset.datamodule.birdset_datamodule][INFO] - >> Smart Sampling
+[2024-07-08 18:47:52,700][birdset.datamodule.birdset_datamodule][INFO] - >> One-hot-encode classes
+[2024-07-10 15:56:19,540][root][INFO] - >>> Using config: 
+device: cuda
+dataset: cifar10
+random_seed: 42
+trust_remote_code: true
+path:
+  output_dir: ./output
+  data_dir: ./data
+  model_dir: ./storage/pretrained_models
+model:
+  name: vit_17
+
+[2024-07-10 15:56:19,541][root][INFO] - >>> Creating output directory at: ./output
+[2024-07-10 15:56:19,541][root][INFO] - >>> Seed experiment with random seed {args.random_seed}.
+[2024-07-10 15:56:19,543][root][INFO] - >>> Initialize Dataset cifar10.
+[2024-07-10 15:56:19,543][birdset.datamodule.base_datamodule][INFO] - Check if preparing has already been done.
+[2024-07-10 15:56:19,543][birdset.datamodule.base_datamodule][INFO] - Prepare Data
+[2024-07-10 15:56:19,543][birdset.datamodule.base_datamodule][INFO] - > Loading data set.
+[2024-07-10 15:56:21,536][birdset.datamodule.birdset_datamodule][INFO] - >> Mapping train data.
+[2024-07-10 15:56:21,729][birdset.datamodule.birdset_datamodule][INFO] - >> Smart Sampling
+[2024-07-10 15:56:56,720][root][INFO] - >>> Using config: 
+device: cuda
+dataset: cifar10
+random_seed: 42
+trust_remote_code: true
+path:
+  output_dir: ./output
+  data_dir: ./data
+  model_dir: ./storage/pretrained_models
+model:
+  name: vit_17
+
+[2024-07-10 15:56:56,721][root][INFO] - >>> Creating output directory at: ./output
+[2024-07-10 15:56:56,721][root][INFO] - >>> Seed experiment with random seed {args.random_seed}.
+[2024-07-10 15:56:56,723][root][INFO] - >>> Initialize Dataset cifar10.
+[2024-07-10 15:56:56,723][birdset.datamodule.base_datamodule][INFO] - Check if preparing has already been done.
+[2024-07-10 15:56:56,723][birdset.datamodule.base_datamodule][INFO] - Prepare Data
+[2024-07-10 15:56:56,723][birdset.datamodule.base_datamodule][INFO] - > Loading data set.
+[2024-07-10 15:56:58,569][birdset.datamodule.birdset_datamodule][INFO] - >> Mapping train data.
+[2024-07-10 15:56:58,680][birdset.datamodule.birdset_datamodule][INFO] - >> Smart Sampling
+[2024-07-10 15:57:13,038][birdset.datamodule.birdset_datamodule][INFO] - >> One-hot-encode classes
+[2024-07-10 15:57:13,263][birdset.datamodule.base_datamodule][INFO] - Train fingerprint found in /home/phahn/datasets/birdset/HSN/HSN_processed_42_bb4a62538b1fcbd0, saving to disk is skipped
+[2024-07-10 15:57:13,264][birdset.datamodule.base_datamodule][INFO] - fit
+[2024-07-10 15:57:13,330][root][INFO] - >>> Initialize Model vit_17.
+[2024-07-10 15:57:14,709][birdset.datamodule.base_datamodule][INFO] - Check if preparing has already been done.
+[2024-07-10 15:57:14,709][birdset.datamodule.base_datamodule][INFO] - Skip preparing.
+[2024-07-10 15:58:15,754][root][INFO] - >>> Using config: 
+device: cuda
+dataset: cifar10
+random_seed: 42
+trust_remote_code: true
+path:
+  output_dir: ./output
+  data_dir: ./data
+  model_dir: ./storage/pretrained_models
+model:
+  name: vit_17
+
+[2024-07-10 15:58:15,754][root][INFO] - >>> Creating output directory at: ./output
+[2024-07-10 15:58:15,754][root][INFO] - >>> Seed experiment with random seed {args.random_seed}.
+[2024-07-10 15:58:15,756][root][INFO] - >>> Initialize Dataset cifar10.
+[2024-07-10 15:58:15,756][birdset.datamodule.base_datamodule][INFO] - Check if preparing has already been done.
+[2024-07-10 15:58:15,756][birdset.datamodule.base_datamodule][INFO] - Prepare Data
+[2024-07-10 15:58:15,756][birdset.datamodule.base_datamodule][INFO] - > Loading data set.
+[2024-07-10 15:58:17,710][birdset.datamodule.birdset_datamodule][INFO] - >> Mapping train data.
+[2024-07-10 15:58:17,817][birdset.datamodule.birdset_datamodule][INFO] - >> Smart Sampling
+[2024-07-10 15:58:32,139][birdset.datamodule.birdset_datamodule][INFO] - >> One-hot-encode classes
+[2024-07-10 15:58:32,359][birdset.datamodule.base_datamodule][INFO] - Train fingerprint found in /home/phahn/datasets/birdset/HSN/HSN_processed_42_bb4a62538b1fcbd0, saving to disk is skipped
+[2024-07-10 15:58:32,360][birdset.datamodule.base_datamodule][INFO] - fit
+[2024-07-10 15:58:32,425][root][INFO] - >>> Initialize Model vit_17.
+[2024-07-10 15:58:33,760][birdset.datamodule.base_datamodule][INFO] - Check if preparing has already been done.
+[2024-07-10 15:58:33,760][birdset.datamodule.base_datamodule][INFO] - Skip preparing.
+[2024-07-10 16:09:13,717][root][INFO] - >>> Using config: 
+device: cuda
+dataset: cifar10
+random_seed: 42
+trust_remote_code: true
+path:
+  output_dir: ./output
+  data_dir: ./data
+  model_dir: ./storage/pretrained_models
+model:
+  name: vit_17
+
+[2024-07-10 16:09:13,717][root][INFO] - >>> Creating output directory at: ./output
+[2024-07-10 16:09:13,717][root][INFO] - >>> Seed experiment with random seed {args.random_seed}.
+[2024-07-10 16:09:13,719][root][INFO] - >>> Initialize Dataset cifar10.
+[2024-07-10 16:11:13,132][birdset.datamodule.base_datamodule][INFO] - Check if preparing has already been done.
+[2024-07-10 16:11:13,133][birdset.datamodule.base_datamodule][INFO] - Prepare Data
+[2024-07-10 16:11:13,133][birdset.datamodule.base_datamodule][INFO] - > Loading data set.
+[2024-07-10 16:11:15,113][birdset.datamodule.birdset_datamodule][INFO] - >> Mapping train data.
+[2024-07-10 16:11:15,222][birdset.datamodule.birdset_datamodule][INFO] - >> Smart Sampling
+[2024-07-10 16:11:29,560][birdset.datamodule.birdset_datamodule][INFO] - >> One-hot-encode classes
+[2024-07-10 16:12:20,107][birdset.datamodule.base_datamodule][INFO] - Saving to disk: /home/phahn/datasets/birdset/HSN/HSN_processed_42_909878b4b1f26d84
+[2024-07-10 16:12:20,272][birdset.datamodule.base_datamodule][INFO] - fit
+[2024-07-10 16:12:20,340][root][INFO] - >>> Initialize Model vit_17.
+[2024-07-10 16:12:21,677][birdset.datamodule.base_datamodule][INFO] - Check if preparing has already been done.
+[2024-07-10 16:12:21,677][birdset.datamodule.base_datamodule][INFO] - Skip preparing.
+[2024-07-10 16:13:32,980][root][INFO] - >>> Using config: 
+device: cuda
+dataset: cifar10
+random_seed: 42
+trust_remote_code: true
+path:
+  output_dir: ./output
+  data_dir: ./data
+  model_dir: ./storage/pretrained_models
+model:
+  name: vit_17
+
+[2024-07-10 16:13:32,981][root][INFO] - >>> Creating output directory at: ./output
+[2024-07-10 16:13:32,981][root][INFO] - >>> Seed experiment with random seed {args.random_seed}.
+[2024-07-10 16:13:32,982][root][INFO] - >>> Initialize Dataset cifar10.
+[2024-07-10 16:13:32,983][birdset.datamodule.base_datamodule][INFO] - Check if preparing has already been done.
+[2024-07-10 16:13:32,983][birdset.datamodule.base_datamodule][INFO] - Prepare Data
+[2024-07-10 16:13:32,983][birdset.datamodule.base_datamodule][INFO] - > Loading data set.
+[2024-07-10 16:13:34,924][birdset.datamodule.birdset_datamodule][INFO] - >> Mapping train data.
+[2024-07-10 16:13:35,034][birdset.datamodule.birdset_datamodule][INFO] - >> Smart Sampling
+[2024-07-10 16:13:49,561][birdset.datamodule.birdset_datamodule][INFO] - >> One-hot-encode classes
+[2024-07-10 16:13:49,785][birdset.datamodule.base_datamodule][INFO] - Train fingerprint found in /home/phahn/datasets/birdset/HSN/HSN_processed_42_bb4a62538b1fcbd0, saving to disk is skipped
+[2024-07-10 16:13:49,786][birdset.datamodule.base_datamodule][INFO] - fit
+[2024-07-10 16:13:49,852][root][INFO] - >>> Initialize Model vit_17.
+[2024-07-10 16:13:51,186][birdset.datamodule.base_datamodule][INFO] - Check if preparing has already been done.
+[2024-07-10 16:13:51,187][birdset.datamodule.base_datamodule][INFO] - Skip preparing.
+[2024-07-10 16:18:37,490][root][INFO] - >>> Using config: 
+device: cuda
+random_seed: 42
+trust_remote_code: true
+path:
+  output_dir: ./output
+  data_dir: ./data
+  model_dir: ./storage/pretrained_models
+model:
+  name: vit_17
+dataset:
+  name: HSN
+  width: 1024
+  height: 128
+
+[2024-07-10 16:18:37,490][root][INFO] - >>> Creating output directory at: ./output
+[2024-07-10 16:18:37,491][root][INFO] - >>> Seed experiment with random seed {args.random_seed}.
+[2024-07-10 16:18:37,492][root][INFO] - >>> Initialize Dataset {'name': 'HSN', 'width': 1024, 'height': 128}.
+[2024-07-10 16:18:37,493][birdset.datamodule.base_datamodule][INFO] - Check if preparing has already been done.
+[2024-07-10 16:18:37,493][birdset.datamodule.base_datamodule][INFO] - Prepare Data
+[2024-07-10 16:18:37,493][birdset.datamodule.base_datamodule][INFO] - > Loading data set.
+[2024-07-10 16:18:39,313][birdset.datamodule.birdset_datamodule][INFO] - >> Mapping train data.
+[2024-07-10 16:18:39,422][birdset.datamodule.birdset_datamodule][INFO] - >> Smart Sampling
+[2024-07-10 16:18:53,832][birdset.datamodule.birdset_datamodule][INFO] - >> One-hot-encode classes
+[2024-07-10 16:18:54,054][birdset.datamodule.base_datamodule][INFO] - Train fingerprint found in /home/phahn/datasets/birdset/HSN/HSN_processed_42_bb4a62538b1fcbd0, saving to disk is skipped
+[2024-07-10 16:18:54,054][birdset.datamodule.base_datamodule][INFO] - fit
+[2024-07-10 16:18:54,120][root][INFO] - >>> Initialize Model vit_17.
+[2024-07-10 16:18:55,455][birdset.datamodule.base_datamodule][INFO] - Check if preparing has already been done.
+[2024-07-10 16:18:55,455][birdset.datamodule.base_datamodule][INFO] - Skip preparing.
+[2024-07-10 16:23:08,236][root][INFO] - >>> Using config: 
+device: cuda
+random_seed: 42
+trust_remote_code: true
+path:
+  output_dir: ./output
+  data_dir: ./data
+  model_dir: ./storage/pretrained_models
+model:
+  name: vit_17
+dataset:
+  name: HSN
+  width: 1024
+  height: 128
+  num_classes: 21
+
+[2024-07-10 16:23:08,237][root][INFO] - >>> Creating output directory at: ./output
+[2024-07-10 16:23:08,237][root][INFO] - >>> Seed experiment with random seed {args.random_seed}.
+[2024-07-10 16:23:08,239][root][INFO] - >>> Initialize Dataset {'name': 'HSN', 'width': 1024, 'height': 128, 'num_classes': 21}.
+[2024-07-10 16:23:08,239][birdset.datamodule.base_datamodule][INFO] - Check if preparing has already been done.
+[2024-07-10 16:23:08,239][birdset.datamodule.base_datamodule][INFO] - Prepare Data
+[2024-07-10 16:23:08,239][birdset.datamodule.base_datamodule][INFO] - > Loading data set.
+[2024-07-10 16:23:10,121][birdset.datamodule.birdset_datamodule][INFO] - >> Mapping train data.
+[2024-07-10 16:23:10,231][birdset.datamodule.birdset_datamodule][INFO] - >> Smart Sampling
+[2024-07-10 16:23:24,653][birdset.datamodule.birdset_datamodule][INFO] - >> One-hot-encode classes
+[2024-07-10 16:23:24,875][birdset.datamodule.base_datamodule][INFO] - Train fingerprint found in /home/phahn/datasets/birdset/HSN/HSN_processed_42_bb4a62538b1fcbd0, saving to disk is skipped
+[2024-07-10 16:23:24,875][birdset.datamodule.base_datamodule][INFO] - fit
+[2024-07-10 16:23:24,940][root][INFO] - >>> Initialize Model vit_17.
+[2024-07-10 16:25:56,133][root][INFO] - >>> Using config: 
+device: cuda
+random_seed: 42
+trust_remote_code: true
+path:
+  output_dir: ./output
+  data_dir: ./data
+  model_dir: ./storage/pretrained_models
+model:
+  name: vit_17
+dataset:
+  name: HSN
+  width: 1024
+  height: 128
+  num_classes: 21
+
+[2024-07-10 16:25:56,134][root][INFO] - >>> Creating output directory at: ./output
+[2024-07-10 16:25:56,134][root][INFO] - >>> Seed experiment with random seed {args.random_seed}.
+[2024-07-10 16:25:56,136][root][INFO] - >>> Initialize Dataset {'name': 'HSN', 'width': 1024, 'height': 128, 'num_classes': 21}.
+[2024-07-10 16:25:56,136][birdset.datamodule.base_datamodule][INFO] - Check if preparing has already been done.
+[2024-07-10 16:25:56,136][birdset.datamodule.base_datamodule][INFO] - Prepare Data
+[2024-07-10 16:25:56,136][birdset.datamodule.base_datamodule][INFO] - > Loading data set.
+[2024-07-10 16:25:58,193][birdset.datamodule.birdset_datamodule][INFO] - >> Mapping train data.
+[2024-07-10 16:25:58,301][birdset.datamodule.birdset_datamodule][INFO] - >> Smart Sampling
+[2024-07-10 16:26:12,618][birdset.datamodule.birdset_datamodule][INFO] - >> One-hot-encode classes
+[2024-07-10 16:26:12,838][birdset.datamodule.base_datamodule][INFO] - Train fingerprint found in /home/phahn/datasets/birdset/HSN/HSN_processed_42_bb4a62538b1fcbd0, saving to disk is skipped
+[2024-07-10 16:26:12,838][birdset.datamodule.base_datamodule][INFO] - fit
+[2024-07-10 16:26:12,903][root][INFO] - >>> Initialize Model vit_17.
+[2024-07-10 16:26:14,235][birdset.datamodule.base_datamodule][INFO] - Check if preparing has already been done.
+[2024-07-10 16:26:14,235][birdset.datamodule.base_datamodule][INFO] - Skip preparing.
+[2024-07-10 16:28:20,711][root][INFO] - >>> Using config: 
+device: cuda
+random_seed: 42
+trust_remote_code: true
+path:
+  output_dir: ./output
+  data_dir: ./data
+  model_dir: ./storage/pretrained_models
+model:
+  name: vit_17
+dataset:
+  name: HSN
+  width: 1024
+  height: 128
+  num_classes: 21
+
+[2024-07-10 16:28:20,711][root][INFO] - >>> Creating output directory at: ./output
+[2024-07-10 16:28:20,712][root][INFO] - >>> Seed experiment with random seed {args.random_seed}.
+[2024-07-10 16:28:20,713][root][INFO] - >>> Initialize Dataset {'name': 'HSN', 'width': 1024, 'height': 128, 'num_classes': 21}.
+[2024-07-10 16:28:20,713][birdset.datamodule.base_datamodule][INFO] - Check if preparing has already been done.
+[2024-07-10 16:28:20,714][birdset.datamodule.base_datamodule][INFO] - Prepare Data
+[2024-07-10 16:28:20,714][birdset.datamodule.base_datamodule][INFO] - > Loading data set.
+[2024-07-10 16:28:22,526][birdset.datamodule.birdset_datamodule][INFO] - >> Mapping train data.
+[2024-07-10 16:28:22,636][birdset.datamodule.birdset_datamodule][INFO] - >> Smart Sampling
+[2024-07-10 16:28:36,953][birdset.datamodule.birdset_datamodule][INFO] - >> One-hot-encode classes
+[2024-07-10 16:28:37,177][birdset.datamodule.base_datamodule][INFO] - Train fingerprint found in /home/phahn/datasets/birdset/HSN/HSN_processed_42_bb4a62538b1fcbd0, saving to disk is skipped
+[2024-07-10 16:28:37,177][birdset.datamodule.base_datamodule][INFO] - fit
+[2024-07-10 16:28:37,243][root][INFO] - >>> Initialize Model vit_17.
+[2024-07-10 16:28:38,570][birdset.datamodule.base_datamodule][INFO] - Check if preparing has already been done.
+[2024-07-10 16:28:38,570][birdset.datamodule.base_datamodule][INFO] - Skip preparing.
+[2024-07-10 17:20:13,940][root][INFO] - >>> Using config: 
+device: cuda
+random_seed: 42
+trust_remote_code: true
+path:
+  output_dir: ./output
+  data_dir: ./data
+  model_dir: ./storage/pretrained_models
+model:
+  name: vit_17
+dataset:
+  name: HSN
+  width: 1024
+  height: 128
+  num_classes: 21
+
+[2024-07-10 17:20:13,940][root][INFO] - >>> Creating output directory at: ./output
+[2024-07-10 17:20:13,940][root][INFO] - >>> Seed experiment with random seed {args.random_seed}.
+[2024-07-10 17:20:13,942][root][INFO] - >>> Initialize Dataset {'name': 'HSN', 'width': 1024, 'height': 128, 'num_classes': 21}.
+[2024-07-10 17:20:13,942][birdset.datamodule.base_datamodule][INFO] - Check if preparing has already been done.
+[2024-07-10 17:20:13,942][birdset.datamodule.base_datamodule][INFO] - Prepare Data
+[2024-07-10 17:20:13,942][birdset.datamodule.base_datamodule][INFO] - > Loading data set.
+[2024-07-10 17:20:15,966][birdset.datamodule.birdset_datamodule][INFO] - >> Mapping train data.
+[2024-07-10 17:20:16,075][birdset.datamodule.birdset_datamodule][INFO] - >> Smart Sampling
+[2024-07-10 17:20:30,391][birdset.datamodule.birdset_datamodule][INFO] - >> One-hot-encode classes
+[2024-07-10 17:20:30,611][birdset.datamodule.base_datamodule][INFO] - Train fingerprint found in /home/phahn/datasets/birdset/HSN/HSN_processed_42_bb4a62538b1fcbd0, saving to disk is skipped
+[2024-07-10 17:20:30,612][birdset.datamodule.base_datamodule][INFO] - fit
+[2024-07-10 17:20:30,677][root][INFO] - >>> Initialize Model vit_17.
+[2024-07-10 17:20:32,015][birdset.datamodule.base_datamodule][INFO] - Check if preparing has already been done.
+[2024-07-10 17:20:32,015][birdset.datamodule.base_datamodule][INFO] - Skip preparing.
+[2024-07-10 17:20:53,306][root][INFO] - >>> Using config: 
+device: cuda
+random_seed: 42
+trust_remote_code: true
+path:
+  output_dir: ./output
+  data_dir: ./data
+  model_dir: ./storage/pretrained_models
+model:
+  name: vit_17
+dataset:
+  name: HSN
+  width: 1024
+  height: 128
+  num_classes: 21
+
+[2024-07-10 17:20:53,307][root][INFO] - >>> Creating output directory at: ./output
+[2024-07-10 17:20:53,307][root][INFO] - >>> Seed experiment with random seed {args.random_seed}.
+[2024-07-10 17:20:53,308][root][INFO] - >>> Initialize Dataset {'name': 'HSN', 'width': 1024, 'height': 128, 'num_classes': 21}.
+[2024-07-10 17:20:53,309][birdset.datamodule.base_datamodule][INFO] - Check if preparing has already been done.
+[2024-07-10 17:20:53,309][birdset.datamodule.base_datamodule][INFO] - Prepare Data
+[2024-07-10 17:20:53,309][birdset.datamodule.base_datamodule][INFO] - > Loading data set.
+[2024-07-10 17:20:55,288][birdset.datamodule.birdset_datamodule][INFO] - >> Mapping train data.
+[2024-07-10 17:20:55,396][birdset.datamodule.birdset_datamodule][INFO] - >> Smart Sampling
+[2024-07-10 17:21:09,743][birdset.datamodule.birdset_datamodule][INFO] - >> One-hot-encode classes
+[2024-07-10 17:21:09,963][birdset.datamodule.base_datamodule][INFO] - Train fingerprint found in /home/phahn/datasets/birdset/HSN/HSN_processed_42_bb4a62538b1fcbd0, saving to disk is skipped
+[2024-07-10 17:21:09,964][birdset.datamodule.base_datamodule][INFO] - fit
+[2024-07-10 17:21:10,029][root][INFO] - >>> Initialize Model vit_17.
+[2024-07-10 17:21:11,356][birdset.datamodule.base_datamodule][INFO] - Check if preparing has already been done.
+[2024-07-10 17:21:11,356][birdset.datamodule.base_datamodule][INFO] - Skip preparing.
+[2024-07-10 17:22:09,973][root][INFO] - >>> Using config: 
+device: cuda
+random_seed: 42
+trust_remote_code: true
+path:
+  output_dir: ./output
+  data_dir: ./data
+  model_dir: ./storage/pretrained_models
+model:
+  name: vit_17
+dataset:
+  name: HSN
+  width: 1024
+  height: 128
+  num_classes: 21
+
+[2024-07-10 17:22:09,974][root][INFO] - >>> Creating output directory at: ./output
+[2024-07-10 17:22:09,974][root][INFO] - >>> Seed experiment with random seed {args.random_seed}.
+[2024-07-10 17:22:09,975][root][INFO] - >>> Initialize Dataset {'name': 'HSN', 'width': 1024, 'height': 128, 'num_classes': 21}.
+[2024-07-10 17:22:09,976][birdset.datamodule.base_datamodule][INFO] - Check if preparing has already been done.
+[2024-07-10 17:22:09,976][birdset.datamodule.base_datamodule][INFO] - Prepare Data
+[2024-07-10 17:22:09,976][birdset.datamodule.base_datamodule][INFO] - > Loading data set.
+[2024-07-10 17:22:11,826][birdset.datamodule.birdset_datamodule][INFO] - >> Mapping train data.
+[2024-07-10 17:22:11,933][birdset.datamodule.birdset_datamodule][INFO] - >> Smart Sampling
+[2024-07-10 17:22:26,288][birdset.datamodule.birdset_datamodule][INFO] - >> One-hot-encode classes
+[2024-07-10 17:22:26,511][birdset.datamodule.base_datamodule][INFO] - Train fingerprint found in /home/phahn/datasets/birdset/HSN/HSN_processed_42_bb4a62538b1fcbd0, saving to disk is skipped
+[2024-07-10 17:22:26,511][birdset.datamodule.base_datamodule][INFO] - fit
+[2024-07-10 17:22:26,577][root][INFO] - >>> Initialize Model vit_17.
+[2024-07-10 17:22:27,913][birdset.datamodule.base_datamodule][INFO] - Check if preparing has already been done.
+[2024-07-10 17:22:27,914][birdset.datamodule.base_datamodule][INFO] - Skip preparing.
+[2024-07-10 17:23:43,011][root][INFO] - >>> Using config: 
+device: cuda
+random_seed: 42
+trust_remote_code: true
+path:
+  output_dir: ./output
+  data_dir: ./data
+  model_dir: ./storage/pretrained_models
+model:
+  name: vit_17
+dataset:
+  name: HSN
+  width: 1024
+  height: 128
+  num_classes: 21
+
+[2024-07-10 17:23:43,012][root][INFO] - >>> Creating output directory at: ./output
+[2024-07-10 17:23:43,012][root][INFO] - >>> Seed experiment with random seed {args.random_seed}.
+[2024-07-10 17:23:43,014][root][INFO] - >>> Initialize Dataset {'name': 'HSN', 'width': 1024, 'height': 128, 'num_classes': 21}.
+[2024-07-10 17:23:43,014][birdset.datamodule.base_datamodule][INFO] - Check if preparing has already been done.
+[2024-07-10 17:23:43,014][birdset.datamodule.base_datamodule][INFO] - Prepare Data
+[2024-07-10 17:23:43,014][birdset.datamodule.base_datamodule][INFO] - > Loading data set.
+[2024-07-10 17:23:44,860][birdset.datamodule.birdset_datamodule][INFO] - >> Mapping train data.
+[2024-07-10 17:23:44,971][birdset.datamodule.birdset_datamodule][INFO] - >> Smart Sampling
+[2024-07-10 17:23:59,491][birdset.datamodule.birdset_datamodule][INFO] - >> One-hot-encode classes
+[2024-07-10 17:23:59,716][birdset.datamodule.base_datamodule][INFO] - Train fingerprint found in /home/phahn/datasets/birdset/HSN/HSN_processed_42_bb4a62538b1fcbd0, saving to disk is skipped
+[2024-07-10 17:23:59,716][birdset.datamodule.base_datamodule][INFO] - fit
+[2024-07-10 17:23:59,784][root][INFO] - >>> Initialize Model vit_17.
+[2024-07-10 17:24:01,125][birdset.datamodule.base_datamodule][INFO] - Check if preparing has already been done.
+[2024-07-10 17:24:01,125][birdset.datamodule.base_datamodule][INFO] - Skip preparing.
+[2024-07-10 18:30:48,694][root][INFO] - >>> Using config: 
+device: cuda
+random_seed: 42
+trust_remote_code: true
+path:
+  output_dir: ./output
+  data_dir: ./data
+  model_dir: ./storage/pretrained_models
+model:
+  name: vit_17
+dataset:
+  name: HSN
+  width: 1024
+  height: 128
+  num_classes: 21
+
+[2024-07-10 18:30:48,695][root][INFO] - >>> Creating output directory at: ./output
+[2024-07-10 18:30:48,695][root][INFO] - >>> Seed experiment with random seed {args.random_seed}.
+[2024-07-10 18:30:48,696][root][INFO] - >>> Initialize Dataset {'name': 'HSN', 'width': 1024, 'height': 128, 'num_classes': 21}.
+[2024-07-10 18:30:48,697][birdset.datamodule.base_datamodule][INFO] - Check if preparing has already been done.
+[2024-07-10 18:30:48,697][birdset.datamodule.base_datamodule][INFO] - Prepare Data
+[2024-07-10 18:30:48,697][birdset.datamodule.base_datamodule][INFO] - > Loading data set.
+[2024-07-10 18:30:50,602][birdset.datamodule.birdset_datamodule][INFO] - >> Mapping train data.
+[2024-07-10 18:30:50,711][birdset.datamodule.birdset_datamodule][INFO] - >> Smart Sampling
+[2024-07-10 18:31:05,135][birdset.datamodule.birdset_datamodule][INFO] - >> One-hot-encode classes
+[2024-07-10 18:31:05,358][birdset.datamodule.base_datamodule][INFO] - Train fingerprint found in /home/phahn/datasets/birdset/HSN/HSN_processed_42_bb4a62538b1fcbd0, saving to disk is skipped
+[2024-07-10 18:31:05,359][birdset.datamodule.base_datamodule][INFO] - fit
+[2024-07-10 18:31:05,425][root][INFO] - >>> Initialize Model vit_17.
+[2024-07-10 18:31:06,759][birdset.datamodule.base_datamodule][INFO] - Check if preparing has already been done.
+[2024-07-10 18:31:06,759][birdset.datamodule.base_datamodule][INFO] - Skip preparing.

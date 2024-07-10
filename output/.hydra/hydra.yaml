@@ -146,6 +146,7 @@ hydra:
       provider: schema
     output_dir: /home/phahn/repositories/DLL-SSL-1/output
     choices:
+      dataset: hsn
       model: vit17
       hydra/env: default
       hydra/callbacks: null

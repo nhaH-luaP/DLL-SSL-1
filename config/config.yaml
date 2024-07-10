@@ -1,9 +1,9 @@
 defaults:
   - _self_
   - model: vit17
+  - dataset: hsn
 
 device: cuda
-dataset: cifar10
 random_seed: 42
 trust_remote_code: True
 

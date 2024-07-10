@@ -1,5 +1,4 @@
 device: cuda
-dataset: cifar10
 random_seed: 42
 trust_remote_code: true
 path:
@@ -8,3 +7,8 @@ path:
   model_dir: ./storage/pretrained_models
 model:
   name: vit_17
+dataset:
+  name: HSN
+  width: 1024
+  height: 128
+  num_classes: 21

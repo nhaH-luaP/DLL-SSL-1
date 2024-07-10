@@ -143,7 +143,8 @@ class VisionTransformer(nn.Module):
 
     def __init__(
         self,
-        image_size: int,
+        image_size_w: int,
+        image_size_h: int,
         patch_size: int,
         num_layers: int,
         num_heads: int,
@@ -158,8 +159,10 @@ class VisionTransformer(nn.Module):
     ):
         super().__init__()
         _log_api_usage_once(self)
-        torch._assert(image_size % patch_size == 0, "Input shape indivisible by patch size!")
-        self.image_size = image_size
+        torch._assert(image_size_w % patch_size == 0, "Input shape indivisible by patch size!")
+        torch._assert(image_size_h % patch_size == 0, "Input shape indivisible by patch size!")
+        self.image_size_w = image_size_w
+        self.image_size_h = image_size_h
         self.patch_size = patch_size
         self.hidden_dim = hidden_dim
         self.mlp_dim = mlp_dim
@@ -192,10 +195,10 @@ class VisionTransformer(nn.Module):
             self.conv_proj: nn.Module = seq_proj
         else:
             self.conv_proj = nn.Conv2d(
-                in_channels=3, out_channels=hidden_dim, kernel_size=patch_size, stride=patch_size
+                in_channels=1, out_channels=hidden_dim, kernel_size=patch_size, stride=patch_size
             )
 
-        seq_length = (image_size // patch_size) ** 2
+        seq_length = (image_size_w // patch_size) * (image_size_h // patch_size)
 
         # Add a class token
         self.class_token = nn.Parameter(torch.zeros(1, 1, hidden_dim))
@@ -249,8 +252,8 @@ class VisionTransformer(nn.Module):
     def _process_input(self, x: torch.Tensor) -> torch.Tensor:
         n, c, h, w = x.shape
         p = self.patch_size
-        torch._assert(h == self.image_size, f"Wrong image height! Expected {self.image_size} but got {h}!")
-        torch._assert(w == self.image_size, f"Wrong image width! Expected {self.image_size} but got {w}!")
+        torch._assert(h == self.image_size_h, f"Wrong image height! Expected {self.image_size_h} but got {h}!")
+        torch._assert(w == self.image_size_w, f"Wrong image width! Expected {self.image_size_w} but got {w}!")
         n_h = h // p
         n_w = w // p
 
@@ -286,7 +289,10 @@ class VisionTransformer(nn.Module):
         return x
 
 
+# Original Build function
 def _vision_transformer(
+    image_size_w: int = 224,
+    image_size_h: int = 224,
     patch_size: int = 16,
     num_layers: int = 12,
     num_heads: int = 12,
@@ -294,21 +300,23 @@ def _vision_transformer(
     mlp_dim: int = 3072,
     weights = None,
     progress: bool = True,
+    num_classes: int = 1000,
     **kwargs: Any,
 ) -> VisionTransformer:
     if weights is not None:
         _ovewrite_named_param(kwargs, "num_classes", len(weights.meta["categories"]))
         assert weights.meta["min_size"][0] == weights.meta["min_size"][1]
         _ovewrite_named_param(kwargs, "image_size", weights.meta["min_size"][0])
-    image_size = kwargs.pop("image_size", 224)
 
     model = VisionTransformer(
-        image_size=image_size,
+        image_size_w=image_size_w,
+        image_size_h=image_size_h,
         patch_size=patch_size,
         num_layers=num_layers,
         num_heads=num_heads,
         hidden_dim=hidden_dim,
         mlp_dim=mlp_dim,
+        num_classes=num_classes,
         **kwargs,
     )
 
@@ -318,16 +326,18 @@ def _vision_transformer(
     return model
 
 
+
+# Vision transformer as a lightning module to be able to train it with torch.lighning trainer
 class VisionTransformerModule(L.LightningModule):
-    def __init__(self, image_size = 224, patch_size = 16, num_layers = 12, num_heads = 12, hidden_dim = 768, mlp_dim = 3072, weights = None, progress = True):
+    def __init__(self, image_size_w = 224, image_size_h = 224, patch_size = 16, num_layers = 12, num_heads = 12, hidden_dim = 768, mlp_dim = 3072, weights = None, progress = True, num_classes = 1000):
         super().__init__()
-        self.model = _vision_transformer(image_size = 128, patch_size = patch_size, num_layers =  num_layers, num_heads = num_heads, hidden_dim = hidden_dim, mlp_dim = mlp_dim, weights = weights, progress = progress)
+        self.model = _vision_transformer(image_size_w = image_size_w, image_size_h = image_size_h, patch_size = patch_size, num_layers =  num_layers, num_heads = num_heads, hidden_dim = hidden_dim, mlp_dim = mlp_dim, weights = weights, progress = progress, num_classes=num_classes)
 
     def training_step(self, batch, batch_idx):
         x, y = batch['input_values'], batch['labels']
         out = self.model(x)
-        loss = nn.functional.cross_entropy(out, y)
-        self.log("train_loss", loss)
+        loss = nn.functional.binary_cross_entropy_with_logits(out, y)
+        self.log("train_loss", loss.item())
         return loss
 
     def configure_optimizers(self):
@@ -335,6 +345,8 @@ class VisionTransformerModule(L.LightningModule):
         return optimizer
 
 
+
+# TODO (Paul): Required for our purposes?
 def interpolate_embeddings(
     image_size: int,
     patch_size: int,

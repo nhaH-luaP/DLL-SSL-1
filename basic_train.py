@@ -32,7 +32,7 @@ def main(args):
             data_dir='/home/phahn/datasets/birdset/HSN', # specify your data directory!
             dataset_name='HSN',
             hf_path='DBD-research-group/BirdSet',
-            hf_name='HSN',#n_classes=21,
+            hf_name='HSN',
             n_workers=3,
             val_split=0.2,
             task="multilabel",
@@ -51,8 +51,7 @@ def main(args):
     model = build_model(args)
 
     # Train Model
-    # TODO(Paul): Current Error is that the model wants a squared image while the image presented on top has shape 128x1024
-    trainer = Trainer(max_epochs=5, accelerator="gpu", devices=1)
+    trainer = Trainer(max_epochs=5)
     trainer.fit(model=model, datamodule=dm)
 
     # Export results
