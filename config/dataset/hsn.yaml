@@ -2,3 +2,4 @@ name: HSN
 width: 1024
 height: 128
 num_classes: 21
+in_channels: 1

@@ -7,8 +7,14 @@ path:
   model_dir: ./storage/pretrained_models
 model:
   name: vit_17
+  mlp_dim: 512
+  num_heads: 12
+  num_layers: 17
+  hidden_dim: 120
+  n_epochs: 5
 dataset:
-  name: HSN
-  width: 1024
-  height: 128
-  num_classes: 21
+  name: CIFAR10
+  width: 32
+  height: 32
+  num_classes: 10
+  in_channels: 3

@@ -6,6 +6,7 @@ from typing import Any, Callable, List, NamedTuple, Optional
 import torch
 import torch.nn as nn
 import lightning as L
+import logging
 
 from .utils import _ovewrite_named_param, _log_api_usage_once, Conv2dNormActivation, MLP
 
@@ -153,6 +154,7 @@ class VisionTransformer(nn.Module):
         dropout: float = 0.0,
         attention_dropout: float = 0.0,
         num_classes: int = 1000,
+        in_channels: int = 1,
         representation_size: Optional[int] = None,
         norm_layer: Callable[..., torch.nn.Module] = partial(nn.LayerNorm, eps=1e-6),
         conv_stem_configs: Optional[List[ConvStemConfig]] = None,
@@ -171,6 +173,7 @@ class VisionTransformer(nn.Module):
         self.num_classes = num_classes
         self.representation_size = representation_size
         self.norm_layer = norm_layer
+        self.in_channels = in_channels
 
         if conv_stem_configs is not None:
             # As per https://arxiv.org/abs/2106.14881
@@ -195,7 +198,7 @@ class VisionTransformer(nn.Module):
             self.conv_proj: nn.Module = seq_proj
         else:
             self.conv_proj = nn.Conv2d(
-                in_channels=1, out_channels=hidden_dim, kernel_size=patch_size, stride=patch_size
+                in_channels=self.in_channels, out_channels=hidden_dim, kernel_size=patch_size, stride=patch_size
             )
 
         seq_length = (image_size_w // patch_size) * (image_size_h // patch_size)
@@ -301,6 +304,7 @@ def _vision_transformer(
     weights = None,
     progress: bool = True,
     num_classes: int = 1000,
+    in_channels: int = 1,
     **kwargs: Any,
 ) -> VisionTransformer:
     if weights is not None:
@@ -317,6 +321,7 @@ def _vision_transformer(
         hidden_dim=hidden_dim,
         mlp_dim=mlp_dim,
         num_classes=num_classes,
+        in_channels=in_channels,
         **kwargs,
     )
 
@@ -329,14 +334,26 @@ def _vision_transformer(
 
 # Vision transformer as a lightning module to be able to train it with torch.lighning trainer
 class VisionTransformerModule(L.LightningModule):
-    def __init__(self, image_size_w = 224, image_size_h = 224, patch_size = 16, num_layers = 12, num_heads = 12, hidden_dim = 768, mlp_dim = 3072, weights = None, progress = True, num_classes = 1000):
+    def __init__(self, image_size_w = 224, image_size_h = 224, patch_size = 16, num_layers = 12, num_heads = 12, hidden_dim = 768, mlp_dim = 3072, weights = None, progress = True, num_classes = 1000, in_channels: int = 1):
         super().__init__()
-        self.model = _vision_transformer(image_size_w = image_size_w, image_size_h = image_size_h, patch_size = patch_size, num_layers =  num_layers, num_heads = num_heads, hidden_dim = hidden_dim, mlp_dim = mlp_dim, weights = weights, progress = progress, num_classes=num_classes)
+        self.model = _vision_transformer(image_size_w = image_size_w, image_size_h = image_size_h, patch_size = patch_size, num_layers =  num_layers, 
+                                         num_heads = num_heads, hidden_dim = hidden_dim, mlp_dim = mlp_dim, weights = weights, progress = progress, 
+                                         num_classes=num_classes, in_channels=in_channels)
 
     def training_step(self, batch, batch_idx):
-        x, y = batch['input_values'], batch['labels']
-        out = self.model(x)
-        loss = nn.functional.binary_cross_entropy_with_logits(out, y)
+        if type(batch) == list:
+            x, y = batch
+            out = self.model(x)
+            loss = nn.functional.cross_entropy(out, y)
+            pred = out.softmax(-1).argmax(-1)
+            acc = torch.sum(pred == y) / x.shape[0]
+            if batch_idx % 50 == 0:
+                logging.info(f"Train Loss: {loss.item()}     Accuracy:{acc*100}")
+        else:
+            x, y = batch['input_values'], batch['labels']
+            out = self.model(x)
+            loss = nn.functional.binary_cross_entropy_with_logits(out, y)
+        
         self.log("train_loss", loss.item())
         return loss
 

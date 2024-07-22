@@ -12,7 +12,10 @@
             "console": "integratedTerminal",
             "justMyCode": true,
             "args":[
-                "trust_remote_code=True"
+                "trust_remote_code=True",
+                "dataset=cifar10",
+                "model.mlp_dim=512",
+                "model.hidden_dim=120"
             ]
         },
 
