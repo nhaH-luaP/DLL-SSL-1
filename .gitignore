@@ -1,2 +1,4 @@
 # To be done
 lightning_logs/
+.vscode/
+__pycache__/
