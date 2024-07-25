@@ -2493,3 +2493,223 @@ dataset:
 [2024-07-25 15:58:11,707][root][INFO] - >>> Initialize Model swin-vit.
 [2024-07-25 15:58:12,291][birdset.datamodule.base_datamodule][INFO] - Check if preparing has already been done.
 [2024-07-25 15:58:12,292][birdset.datamodule.base_datamodule][INFO] - Skip preparing.
+[2024-07-25 16:17:24,436][root][INFO] - >>> Using config: 
+device: cuda
+random_seed: 42
+trust_remote_code: true
+task: multilabel
+path:
+  output_dir: ./output
+  data_dir: /home/phahn/datasets/birdset/
+  model_dir: ./storage/pretrained_models
+  hf_path: DBD-research-group/BirdSet
+model:
+  name: swin-vit
+  type: vision
+  mlp_dim: 3072
+  num_heads: 12
+  num_layers: 17
+  embed_dim: 96
+  num_epochs: 1
+  window_size: 4
+  patch_size: 4
+dataset:
+  name: HSN
+  width: 1024
+  height: 128
+  num_classes: 21
+  in_channels: 1
+  num_workers: 5
+  val_split: 0.25
+
+[2024-07-25 16:17:24,436][root][INFO] - >>> Creating output directory at: ./output
+[2024-07-25 16:17:24,436][root][INFO] - >>> Seed experiment with random seed {args.random_seed}.
+[2024-07-25 16:17:24,439][root][INFO] - >>> Initialize Dataset {'name': 'HSN', 'width': 1024, 'height': 128, 'num_classes': 21, 'in_channels': 1, 'num_workers': 5, 'val_split': 0.25}.
+[2024-07-25 16:17:24,440][birdset.datamodule.base_datamodule][INFO] - Check if preparing has already been done.
+[2024-07-25 16:17:24,440][birdset.datamodule.base_datamodule][INFO] - Prepare Data
+[2024-07-25 16:17:24,440][birdset.datamodule.base_datamodule][INFO] - > Loading data set.
+[2024-07-25 16:18:59,199][root][INFO] - >>> Using config: 
+device: cuda
+random_seed: 42
+trust_remote_code: true
+task: multilabel
+path:
+  output_dir: ./output
+  data_dir: /home/phahn/datasets/birdset/HSN/
+  model_dir: ./storage/pretrained_models
+  hf_path: DBD-research-group/BirdSet
+model:
+  name: swin-vit
+  type: vision
+  mlp_dim: 3072
+  num_heads: 12
+  num_layers: 17
+  embed_dim: 96
+  num_epochs: 1
+  window_size: 4
+  patch_size: 4
+dataset:
+  name: HSN
+  width: 1024
+  height: 128
+  num_classes: 21
+  in_channels: 1
+  num_workers: 5
+  val_split: 0.25
+
+[2024-07-25 16:18:59,199][root][INFO] - >>> Creating output directory at: ./output
+[2024-07-25 16:18:59,200][root][INFO] - >>> Seed experiment with random seed {args.random_seed}.
+[2024-07-25 16:18:59,201][root][INFO] - >>> Initialize Dataset {'name': 'HSN', 'width': 1024, 'height': 128, 'num_classes': 21, 'in_channels': 1, 'num_workers': 5, 'val_split': 0.25}.
+[2024-07-25 16:18:59,202][birdset.datamodule.base_datamodule][INFO] - Check if preparing has already been done.
+[2024-07-25 16:18:59,202][birdset.datamodule.base_datamodule][INFO] - Prepare Data
+[2024-07-25 16:18:59,202][birdset.datamodule.base_datamodule][INFO] - > Loading data set.
+[2024-07-25 16:19:01,188][birdset.datamodule.birdset_datamodule][INFO] - >> Mapping train data.
+[2024-07-25 16:19:07,172][birdset.datamodule.birdset_datamodule][INFO] - >> Smart Sampling
+[2024-07-25 16:19:21,416][birdset.datamodule.birdset_datamodule][INFO] - >> One-hot-encode classes
+[2024-07-25 16:20:02,118][birdset.datamodule.base_datamodule][INFO] - Saving to disk: /home/phahn/datasets/birdset/HSN/HSN_processed_42_e81dfeb9707cac39
+[2024-07-25 16:20:02,288][birdset.datamodule.base_datamodule][INFO] - fit
+[2024-07-25 16:20:02,354][root][INFO] - >>> Initialize Model swin-vit.
+[2024-07-25 16:20:02,897][birdset.datamodule.base_datamodule][INFO] - Check if preparing has already been done.
+[2024-07-25 16:20:02,897][birdset.datamodule.base_datamodule][INFO] - Skip preparing.
+[2024-07-25 16:23:11,734][birdset.datamodule.base_datamodule][INFO] - test
+[2024-07-25 16:23:11,770][birdset.datamodule.base_datamodule][INFO] - Check if preparing has already been done.
+[2024-07-25 16:23:11,770][birdset.datamodule.base_datamodule][INFO] - Skip preparing.
+[2024-07-25 16:35:31,374][root][INFO] - >>> Using config: 
+device: cuda
+random_seed: 42
+trust_remote_code: true
+task: multilabel
+path:
+  output_dir: ./output
+  data_dir: /home/phahn/datasets/birdset/HSN/
+  model_dir: ./storage/pretrained_models
+  hf_path: DBD-research-group/BirdSet
+model:
+  name: swin-vit
+  type: vision
+  mlp_dim: 3072
+  num_heads: 12
+  num_layers: 17
+  embed_dim: 96
+  num_epochs: 1
+  window_size: 4
+  patch_size: 4
+dataset:
+  name: HSN
+  width: 1024
+  height: 128
+  num_classes: 21
+  in_channels: 1
+  num_workers: 5
+  val_split: 0.25
+
+[2024-07-25 16:35:31,374][root][INFO] - >>> Creating output directory at: ./output
+[2024-07-25 16:35:31,375][root][INFO] - >>> Seed experiment with random seed {args.random_seed}.
+[2024-07-25 16:35:31,376][root][INFO] - >>> Initialize Dataset {'name': 'HSN', 'width': 1024, 'height': 128, 'num_classes': 21, 'in_channels': 1, 'num_workers': 5, 'val_split': 0.25}.
+[2024-07-25 16:35:31,377][birdset.datamodule.base_datamodule][INFO] - Check if preparing has already been done.
+[2024-07-25 16:35:31,377][birdset.datamodule.base_datamodule][INFO] - Prepare Data
+[2024-07-25 16:35:31,378][birdset.datamodule.base_datamodule][INFO] - > Loading data set.
+[2024-07-25 16:35:33,717][birdset.datamodule.birdset_datamodule][INFO] - >> Mapping train data.
+[2024-07-25 16:35:33,871][birdset.datamodule.birdset_datamodule][INFO] - >> Smart Sampling
+[2024-07-25 16:35:48,074][birdset.datamodule.birdset_datamodule][INFO] - >> One-hot-encode classes
+[2024-07-25 16:35:48,388][birdset.datamodule.base_datamodule][INFO] - Train fingerprint found in /home/phahn/datasets/birdset/HSN/HSN_processed_42_e81dfeb9707cac39, saving to disk is skipped
+[2024-07-25 16:35:48,389][birdset.datamodule.base_datamodule][INFO] - fit
+[2024-07-25 16:35:48,454][root][INFO] - >>> Initialize Model swin-vit.
+[2024-07-25 16:35:48,983][birdset.datamodule.base_datamodule][INFO] - Check if preparing has already been done.
+[2024-07-25 16:35:48,983][birdset.datamodule.base_datamodule][INFO] - Skip preparing.
+[2024-07-25 16:38:53,515][birdset.datamodule.base_datamodule][INFO] - test
+[2024-07-25 16:38:53,555][birdset.datamodule.base_datamodule][INFO] - Check if preparing has already been done.
+[2024-07-25 16:38:53,555][birdset.datamodule.base_datamodule][INFO] - Skip preparing.
+[2024-07-25 16:39:37,384][root][INFO] - >>> Using config: 
+device: cuda
+random_seed: 42
+trust_remote_code: true
+task: multilabel
+path:
+  output_dir: ./output
+  data_dir: /home/phahn/datasets/birdset/HSN/
+  model_dir: ./storage/pretrained_models
+  hf_path: DBD-research-group/BirdSet
+model:
+  name: swin-vit
+  type: vision
+  mlp_dim: 3072
+  num_heads: 12
+  num_layers: 17
+  embed_dim: 96
+  num_epochs: 1
+  window_size: 4
+  patch_size: 4
+dataset:
+  name: HSN
+  width: 1024
+  height: 128
+  num_classes: 21
+  in_channels: 1
+  num_workers: 5
+  val_split: 0.25
+
+[2024-07-25 16:39:37,385][root][INFO] - >>> Creating output directory at: ./output
+[2024-07-25 16:39:37,385][root][INFO] - >>> Seed experiment with random seed {args.random_seed}.
+[2024-07-25 16:39:37,387][root][INFO] - >>> Initialize Dataset {'name': 'HSN', 'width': 1024, 'height': 128, 'num_classes': 21, 'in_channels': 1, 'num_workers': 5, 'val_split': 0.25}.
+[2024-07-25 16:39:37,388][birdset.datamodule.base_datamodule][INFO] - Check if preparing has already been done.
+[2024-07-25 16:39:37,388][birdset.datamodule.base_datamodule][INFO] - Prepare Data
+[2024-07-25 16:39:37,388][birdset.datamodule.base_datamodule][INFO] - > Loading data set.
+[2024-07-25 16:39:39,391][birdset.datamodule.birdset_datamodule][INFO] - >> Mapping train data.
+[2024-07-25 16:39:39,553][birdset.datamodule.birdset_datamodule][INFO] - >> Smart Sampling
+[2024-07-25 16:39:54,097][birdset.datamodule.birdset_datamodule][INFO] - >> One-hot-encode classes
+[2024-07-25 16:39:54,417][birdset.datamodule.base_datamodule][INFO] - Train fingerprint found in /home/phahn/datasets/birdset/HSN/HSN_processed_42_e81dfeb9707cac39, saving to disk is skipped
+[2024-07-25 16:39:54,417][birdset.datamodule.base_datamodule][INFO] - fit
+[2024-07-25 16:39:54,483][root][INFO] - >>> Initialize Model swin-vit.
+[2024-07-25 16:39:55,013][birdset.datamodule.base_datamodule][INFO] - Check if preparing has already been done.
+[2024-07-25 16:39:55,014][birdset.datamodule.base_datamodule][INFO] - Skip preparing.
+[2024-07-25 16:42:59,644][birdset.datamodule.base_datamodule][INFO] - test
+[2024-07-25 16:42:59,667][birdset.datamodule.base_datamodule][INFO] - Check if preparing has already been done.
+[2024-07-25 16:42:59,668][birdset.datamodule.base_datamodule][INFO] - Skip preparing.
+[2024-07-25 17:06:40,052][root][INFO] - >>> Using config: 
+device: cuda
+random_seed: 42
+trust_remote_code: true
+task: multilabel
+path:
+  output_dir: ./output
+  data_dir: /home/phahn/datasets/birdset/HSN/
+  model_dir: ./storage/pretrained_models
+  hf_path: DBD-research-group/BirdSet
+model:
+  name: swin-vit
+  type: vision
+  mlp_dim: 3072
+  num_heads: 12
+  num_layers: 17
+  embed_dim: 96
+  num_epochs: 1
+  window_size: 4
+  patch_size: 4
+dataset:
+  name: HSN
+  width: 1024
+  height: 128
+  num_classes: 21
+  in_channels: 1
+  num_workers: 5
+  val_split: 0.25
+
+[2024-07-25 17:06:40,052][root][INFO] - >>> Creating output directory at: ./output
+[2024-07-25 17:06:40,052][root][INFO] - >>> Seed experiment with random seed {args.random_seed}.
+[2024-07-25 17:06:40,054][root][INFO] - >>> Initialize Dataset {'name': 'HSN', 'width': 1024, 'height': 128, 'num_classes': 21, 'in_channels': 1, 'num_workers': 5, 'val_split': 0.25}.
+[2024-07-25 17:06:40,055][birdset.datamodule.base_datamodule][INFO] - Check if preparing has already been done.
+[2024-07-25 17:06:40,055][birdset.datamodule.base_datamodule][INFO] - Prepare Data
+[2024-07-25 17:06:40,055][birdset.datamodule.base_datamodule][INFO] - > Loading data set.
+[2024-07-25 17:06:41,997][birdset.datamodule.birdset_datamodule][INFO] - >> Mapping train data.
+[2024-07-25 17:06:42,154][birdset.datamodule.birdset_datamodule][INFO] - >> Smart Sampling
+[2024-07-25 17:06:56,456][birdset.datamodule.birdset_datamodule][INFO] - >> One-hot-encode classes
+[2024-07-25 17:06:56,766][birdset.datamodule.base_datamodule][INFO] - Train fingerprint found in /home/phahn/datasets/birdset/HSN/HSN_processed_42_e81dfeb9707cac39, saving to disk is skipped
+[2024-07-25 17:06:56,767][birdset.datamodule.base_datamodule][INFO] - fit
+[2024-07-25 17:06:56,831][root][INFO] - >>> Initialize Model swin-vit.
+[2024-07-25 17:06:57,358][birdset.datamodule.base_datamodule][INFO] - Check if preparing has already been done.
+[2024-07-25 17:06:57,358][birdset.datamodule.base_datamodule][INFO] - Skip preparing.
+[2024-07-25 17:10:01,626][birdset.datamodule.base_datamodule][INFO] - test
+[2024-07-25 17:10:01,649][birdset.datamodule.base_datamodule][INFO] - Check if preparing has already been done.
+[2024-07-25 17:10:01,649][birdset.datamodule.base_datamodule][INFO] - Skip preparing.
+[2024-07-25 17:11:45,923][root][INFO] - >>> Finished.

@@ -38,8 +38,12 @@ def main(args):
     model = build_model(args)
 
     # Train Model
-    trainer = Trainer(max_epochs=args.model.n_epochs)
+    trainer = Trainer(max_epochs=args.model.num_epochs)
     trainer.fit(model=model, datamodule=dm)
+
+    # Evaluate Model TODO: Somethings not right here, i just got 97% accuracy :D
+    dm.setup(stage='test')
+    trainer.test(model=model, datamodule=dm)
 
     # Export results
     history = {}

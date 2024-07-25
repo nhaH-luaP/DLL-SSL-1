@@ -4,7 +4,7 @@ trust_remote_code: true
 task: multilabel
 path:
   output_dir: ./output
-  data_dir: /home/phahn/datasets/birdset/
+  data_dir: /home/phahn/datasets/birdset/HSN/
   model_dir: ./storage/pretrained_models
   hf_path: DBD-research-group/BirdSet
 model:
@@ -14,14 +14,14 @@ model:
   num_heads: 12
   num_layers: 17
   embed_dim: 96
-  n_epochs: 5
+  num_epochs: 1
   window_size: 4
   patch_size: 4
 dataset:
-  name: PER
-  num_classes: 132
+  name: HSN
   width: 1024
   height: 128
+  num_classes: 21
   in_channels: 1
-  num_workers: 1
+  num_workers: 5
   val_split: 0.25

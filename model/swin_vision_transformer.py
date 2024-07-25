@@ -658,6 +658,20 @@ class SWINVisionTransformerModule(L.LightningModule):
         loss = nn.functional.binary_cross_entropy_with_logits(out, y)
         self.log("train_loss", loss.item())
         return loss
+    
+    def test_step(self, batch, batch_idx):
+        x, y = batch['input_values'], batch['labels']
+
+        # Getting logits from the model and calculate loss
+        logits = self.model(x)
+        loss = nn.functional.binary_cross_entropy_with_logits(logits, y)
+
+        # Calculate Accuracy in a multi-label setting
+        probas = torch.nn.functional.sigmoid(logits)
+        test_acc = torch.sum(y.flatten() * 0.5 <= probas.flatten()).item() / (y.shape[0] * y.shape[1] * 1.0)
+
+        # Logging
+        self.log_dict({'test_loss': loss, 'test_acc': test_acc})
 
     def configure_optimizers(self):
         optimizer = torch.optim.SGD(self.parameters(), lr=1e-2, weight_decay=5e-4, nesterov=True, momentum=0.9)

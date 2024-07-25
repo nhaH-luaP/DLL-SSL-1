@@ -1,6 +1,5 @@
 name: PER
 num_classes: 132
-
 width: 1024
 height: 128
 in_channels: 1

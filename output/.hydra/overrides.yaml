@@ -1,2 +1,3 @@
-- path.data_dir=/home/phahn/datasets/birdset/
-- dataset=per
+- path.data_dir=/home/phahn/datasets/birdset/HSN/
+- dataset=hsn
+- model.num_epochs=1
