@@ -668,7 +668,8 @@ class SWINVisionTransformerModule(L.LightningModule):
 
         # Calculate Accuracy in a multi-label setting
         probas = torch.nn.functional.sigmoid(logits)
-        test_acc = torch.sum(y.flatten() * 0.5 <= probas.flatten()).item() / (y.shape[0] * y.shape[1] * 1.0)
+        preds = probas.flatten() >= 0.5
+        test_acc = torch.sum(y.flatten() == preds).item() / (y.shape[0] * y.shape[1] * 100.)
 
         # Logging
         self.log_dict({'test_loss': loss, 'test_acc': test_acc})

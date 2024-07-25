@@ -2713,3 +2713,130 @@ dataset:
 [2024-07-25 17:10:01,649][birdset.datamodule.base_datamodule][INFO] - Check if preparing has already been done.
 [2024-07-25 17:10:01,649][birdset.datamodule.base_datamodule][INFO] - Skip preparing.
 [2024-07-25 17:11:45,923][root][INFO] - >>> Finished.
+[2024-07-25 17:20:39,827][root][INFO] - >>> Using config: 
+device: cuda
+random_seed: 42
+trust_remote_code: true
+task: multilabel
+path:
+  output_dir: ./output
+  data_dir: /home/phahn/datasets/birdset/HSN/
+  model_dir: ./storage/pretrained_models
+  hf_path: DBD-research-group/BirdSet
+model:
+  name: swin-vit
+  type: vision
+  mlp_dim: 3072
+  num_heads: 12
+  num_layers: 17
+  embed_dim: 96
+  num_epochs: 1
+  window_size: 4
+  patch_size: 4
+dataset:
+  name: HSN
+  width: 1024
+  height: 128
+  num_classes: 21
+  in_channels: 1
+  num_workers: 5
+  val_split: 0.25
+
+[2024-07-25 17:20:39,828][root][INFO] - >>> Creating output directory at: ./output
+[2024-07-25 17:20:39,828][root][INFO] - >>> Seed experiment with random seed {args.random_seed}.
+[2024-07-25 17:20:39,830][root][INFO] - >>> Initialize Dataset {'name': 'HSN', 'width': 1024, 'height': 128, 'num_classes': 21, 'in_channels': 1, 'num_workers': 5, 'val_split': 0.25}.
+[2024-07-25 17:20:39,831][birdset.datamodule.base_datamodule][INFO] - Check if preparing has already been done.
+[2024-07-25 17:20:39,831][birdset.datamodule.base_datamodule][INFO] - Prepare Data
+[2024-07-25 17:20:39,831][birdset.datamodule.base_datamodule][INFO] - > Loading data set.
+[2024-07-25 17:20:42,705][birdset.datamodule.birdset_datamodule][INFO] - >> Mapping train data.
+[2024-07-25 17:20:42,862][birdset.datamodule.birdset_datamodule][INFO] - >> Smart Sampling
+[2024-07-25 17:20:58,942][root][INFO] - >>> Using config: 
+device: cuda
+random_seed: 42
+trust_remote_code: true
+task: multilabel
+path:
+  output_dir: ./output
+  data_dir: /home/phahn/datasets/birdset/HSN/
+  model_dir: ./storage/pretrained_models
+  hf_path: DBD-research-group/BirdSet
+model:
+  name: swin-vit
+  type: vision
+  mlp_dim: 3072
+  num_heads: 12
+  num_layers: 17
+  embed_dim: 96
+  num_epochs: 1
+  window_size: 4
+  patch_size: 4
+dataset:
+  name: HSN
+  width: 1024
+  height: 128
+  num_classes: 21
+  in_channels: 1
+  num_workers: 5
+  val_split: 0.25
+
+[2024-07-25 17:20:58,943][root][INFO] - >>> Creating output directory at: ./output
+[2024-07-25 17:20:58,943][root][INFO] - >>> Seed experiment with random seed {args.random_seed}.
+[2024-07-25 17:20:58,945][root][INFO] - >>> Initialize Dataset {'name': 'HSN', 'width': 1024, 'height': 128, 'num_classes': 21, 'in_channels': 1, 'num_workers': 5, 'val_split': 0.25}.
+[2024-07-25 17:20:58,946][birdset.datamodule.base_datamodule][INFO] - Check if preparing has already been done.
+[2024-07-25 17:20:58,946][birdset.datamodule.base_datamodule][INFO] - Prepare Data
+[2024-07-25 17:20:58,946][birdset.datamodule.base_datamodule][INFO] - > Loading data set.
+[2024-07-25 17:21:00,887][birdset.datamodule.birdset_datamodule][INFO] - >> Mapping train data.
+[2024-07-25 17:21:01,044][birdset.datamodule.birdset_datamodule][INFO] - >> Smart Sampling
+[2024-07-25 17:21:15,474][birdset.datamodule.birdset_datamodule][INFO] - >> One-hot-encode classes
+[2024-07-25 17:21:15,786][birdset.datamodule.base_datamodule][INFO] - Train fingerprint found in /home/phahn/datasets/birdset/HSN/HSN_processed_42_e81dfeb9707cac39, saving to disk is skipped
+[2024-07-25 17:21:15,786][birdset.datamodule.base_datamodule][INFO] - fit
+[2024-07-25 17:21:15,851][root][INFO] - >>> Initialize Model swin-vit.
+[2024-07-25 17:21:16,376][birdset.datamodule.base_datamodule][INFO] - Check if preparing has already been done.
+[2024-07-25 17:21:16,376][birdset.datamodule.base_datamodule][INFO] - Skip preparing.
+[2024-07-25 17:23:36,442][root][INFO] - >>> Using config: 
+device: cuda
+random_seed: 42
+trust_remote_code: true
+task: multilabel
+path:
+  output_dir: ./output
+  data_dir: /home/phahn/datasets/birdset/HSN/
+  model_dir: ./storage/pretrained_models
+  hf_path: DBD-research-group/BirdSet
+model:
+  name: swin-vit
+  type: vision
+  mlp_dim: 3072
+  num_heads: 12
+  num_layers: 17
+  embed_dim: 96
+  num_epochs: 1
+  window_size: 4
+  patch_size: 4
+dataset:
+  name: HSN
+  width: 1024
+  height: 128
+  num_classes: 21
+  in_channels: 1
+  num_workers: 5
+  val_split: 0.25
+
+[2024-07-25 17:23:36,442][root][INFO] - >>> Creating output directory at: ./output
+[2024-07-25 17:23:36,442][root][INFO] - >>> Seed experiment with random seed {args.random_seed}.
+[2024-07-25 17:23:36,444][root][INFO] - >>> Initialize Dataset {'name': 'HSN', 'width': 1024, 'height': 128, 'num_classes': 21, 'in_channels': 1, 'num_workers': 5, 'val_split': 0.25}.
+[2024-07-25 17:23:36,445][birdset.datamodule.base_datamodule][INFO] - Check if preparing has already been done.
+[2024-07-25 17:23:36,445][birdset.datamodule.base_datamodule][INFO] - Prepare Data
+[2024-07-25 17:23:36,445][birdset.datamodule.base_datamodule][INFO] - > Loading data set.
+[2024-07-25 17:23:38,574][birdset.datamodule.birdset_datamodule][INFO] - >> Mapping train data.
+[2024-07-25 17:23:38,729][birdset.datamodule.birdset_datamodule][INFO] - >> Smart Sampling
+[2024-07-25 17:23:53,018][birdset.datamodule.birdset_datamodule][INFO] - >> One-hot-encode classes
+[2024-07-25 17:23:53,330][birdset.datamodule.base_datamodule][INFO] - Train fingerprint found in /home/phahn/datasets/birdset/HSN/HSN_processed_42_e81dfeb9707cac39, saving to disk is skipped
+[2024-07-25 17:23:53,330][birdset.datamodule.base_datamodule][INFO] - fit
+[2024-07-25 17:23:53,395][root][INFO] - >>> Initialize Model swin-vit.
+[2024-07-25 17:23:53,934][birdset.datamodule.base_datamodule][INFO] - Check if preparing has already been done.
+[2024-07-25 17:23:53,935][birdset.datamodule.base_datamodule][INFO] - Skip preparing.
+[2024-07-25 17:26:57,822][birdset.datamodule.base_datamodule][INFO] - test
+[2024-07-25 17:26:57,846][birdset.datamodule.base_datamodule][INFO] - Check if preparing has already been done.
+[2024-07-25 17:26:57,846][birdset.datamodule.base_datamodule][INFO] - Skip preparing.
+[2024-07-25 17:48:55,395][root][INFO] - >>> Finished.
