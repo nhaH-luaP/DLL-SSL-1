@@ -113,11 +113,11 @@ hydra:
     - hydra.mode=RUN
     task:
     - path.data_dir=/home/phahn/datasets/birdset/
-    - dataset=hsn
+    - dataset=per
   job:
     name: basic_train
     chdir: null
-    override_dirname: dataset=hsn,path.data_dir=/home/phahn/datasets/birdset/
+    override_dirname: dataset=per,path.data_dir=/home/phahn/datasets/birdset/
     id: ???
     num: ???
     config_name: config
@@ -147,7 +147,7 @@ hydra:
       provider: schema
     output_dir: /home/phahn/repositories/DLL-SSL-1/output
     choices:
-      dataset: hsn
+      dataset: per
       model: swin_vit
       hydra/env: default
       hydra/callbacks: null

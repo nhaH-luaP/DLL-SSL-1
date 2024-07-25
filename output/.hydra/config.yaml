@@ -1,12 +1,15 @@
 device: cuda
 random_seed: 42
 trust_remote_code: true
+task: multilabel
 path:
   output_dir: ./output
   data_dir: /home/phahn/datasets/birdset/
   model_dir: ./storage/pretrained_models
+  hf_path: DBD-research-group/BirdSet
 model:
   name: swin-vit
+  type: vision
   mlp_dim: 3072
   num_heads: 12
   num_layers: 17
@@ -15,8 +18,10 @@ model:
   window_size: 4
   patch_size: 4
 dataset:
-  name: HSN
+  name: PER
+  num_classes: 132
   width: 1024
   height: 128
-  num_classes: 21
   in_channels: 1
+  num_workers: 1
+  val_split: 0.25

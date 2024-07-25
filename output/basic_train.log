@@ -2449,3 +2449,47 @@ dataset:
 [2024-07-25 13:51:44,623][root][INFO] - Train Loss: 0.1854248046875
 [2024-07-25 13:51:48,904][root][INFO] - Train Loss: 0.1722412109375
 [2024-07-25 13:51:53,182][root][INFO] - Train Loss: 0.184326171875
+[2024-07-25 15:42:53,689][root][INFO] - >>> Using config: 
+device: cuda
+random_seed: 42
+trust_remote_code: true
+task: multilabel
+path:
+  output_dir: ./output
+  data_dir: /home/phahn/datasets/birdset/
+  model_dir: ./storage/pretrained_models
+  hf_path: DBD-research-group/BirdSet
+model:
+  name: swin-vit
+  type: vision
+  mlp_dim: 3072
+  num_heads: 12
+  num_layers: 17
+  embed_dim: 96
+  n_epochs: 5
+  window_size: 4
+  patch_size: 4
+dataset:
+  name: PER
+  num_classes: 132
+  width: 1024
+  height: 128
+  in_channels: 1
+  num_workers: 1
+  val_split: 0.25
+
+[2024-07-25 15:42:53,690][root][INFO] - >>> Creating output directory at: ./output
+[2024-07-25 15:42:53,690][root][INFO] - >>> Seed experiment with random seed {args.random_seed}.
+[2024-07-25 15:42:53,692][root][INFO] - >>> Initialize Dataset {'name': 'PER', 'num_classes': 132, 'width': 1024, 'height': 128, 'in_channels': 1, 'num_workers': 1, 'val_split': 0.25}.
+[2024-07-25 15:42:53,693][birdset.datamodule.base_datamodule][INFO] - Check if preparing has already been done.
+[2024-07-25 15:42:53,693][birdset.datamodule.base_datamodule][INFO] - Prepare Data
+[2024-07-25 15:42:53,693][birdset.datamodule.base_datamodule][INFO] - > Loading data set.
+[2024-07-25 15:51:07,426][datasets.builder][WARNING] - Setting num_proc from 3 back to 1 for the test_5s split to disable multiprocessing as it only contains one shard.
+[2024-07-25 15:51:39,036][birdset.datamodule.birdset_datamodule][INFO] - >> Mapping train data.
+[2024-07-25 15:51:44,649][birdset.datamodule.birdset_datamodule][INFO] - >> Smart Sampling
+[2024-07-25 15:52:43,908][birdset.datamodule.birdset_datamodule][INFO] - >> One-hot-encode classes
+[2024-07-25 15:58:10,935][birdset.datamodule.base_datamodule][INFO] - Saving to disk: /home/phahn/datasets/birdset/PER_processed_42_d7cb09d1d1c15e89
+[2024-07-25 15:58:11,557][birdset.datamodule.base_datamodule][INFO] - fit
+[2024-07-25 15:58:11,707][root][INFO] - >>> Initialize Model swin-vit.
+[2024-07-25 15:58:12,291][birdset.datamodule.base_datamodule][INFO] - Check if preparing has already been done.
+[2024-07-25 15:58:12,292][birdset.datamodule.base_datamodule][INFO] - Skip preparing.
