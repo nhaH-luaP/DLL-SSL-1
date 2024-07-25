@@ -1939,3 +1939,513 @@ dataset:
 [2024-07-22 15:10:46,023][root][INFO] - Train Loss: 1.546445608139038     Accuracy:45.3125
 [2024-07-22 15:10:47,519][root][INFO] - Train Loss: 1.6832704544067383     Accuracy:43.75
 [2024-07-22 15:10:49,179][root][INFO] - >>> Finished.
+[2024-07-25 13:06:40,389][root][INFO] - >>> Using config: 
+device: cuda
+random_seed: 42
+trust_remote_code: true
+path:
+  output_dir: ./output
+  data_dir: /home/phahn/datasets/CIFAR/
+  model_dir: ./storage/pretrained_models
+model:
+  name: swin-vit
+  mlp_dim: 3072
+  num_heads: 12
+  num_layers: 17
+  hidden_dim: 768
+  n_epochs: 5
+dataset:
+  name: CIFAR10
+  width: 32
+  height: 32
+  num_classes: 10
+  in_channels: 3
+
+[2024-07-25 13:06:40,390][root][INFO] - >>> Creating output directory at: ./output
+[2024-07-25 13:06:40,390][root][INFO] - >>> Seed experiment with random seed {args.random_seed}.
+[2024-07-25 13:06:40,392][root][INFO] - >>> Initialize Dataset {'name': 'CIFAR10', 'width': 32, 'height': 32, 'num_classes': 10, 'in_channels': 3}.
+[2024-07-25 13:06:40,392][root][INFO] - >>> Initialize Model swin-vit.
+[2024-07-25 13:08:35,181][root][INFO] - >>> Using config: 
+device: cuda
+random_seed: 42
+trust_remote_code: true
+path:
+  output_dir: ./output
+  data_dir: /home/phahn/datasets/CIFAR/
+  model_dir: ./storage/pretrained_models
+model:
+  name: swin-vit
+  mlp_dim: 3072
+  num_heads: 12
+  num_layers: 17
+  hidden_dim: 768
+  n_epochs: 5
+  window_size: 8
+dataset:
+  name: CIFAR10
+  width: 32
+  height: 32
+  num_classes: 10
+  in_channels: 3
+
+[2024-07-25 13:08:35,182][root][INFO] - >>> Creating output directory at: ./output
+[2024-07-25 13:08:35,182][root][INFO] - >>> Seed experiment with random seed {args.random_seed}.
+[2024-07-25 13:08:35,184][root][INFO] - >>> Initialize Dataset {'name': 'CIFAR10', 'width': 32, 'height': 32, 'num_classes': 10, 'in_channels': 3}.
+[2024-07-25 13:08:35,184][root][INFO] - >>> Initialize Model swin-vit.
+[2024-07-25 13:09:18,746][root][INFO] - >>> Using config: 
+device: cuda
+random_seed: 42
+trust_remote_code: true
+path:
+  output_dir: ./output
+  data_dir: /home/phahn/datasets/CIFAR/
+  model_dir: ./storage/pretrained_models
+model:
+  name: swin-vit
+  mlp_dim: 3072
+  num_heads: 12
+  num_layers: 17
+  hidden_dim: 768
+  n_epochs: 5
+  window_size: 8
+dataset:
+  name: CIFAR10
+  width: 32
+  height: 32
+  num_classes: 10
+  in_channels: 3
+
+[2024-07-25 13:09:18,747][root][INFO] - >>> Creating output directory at: ./output
+[2024-07-25 13:09:18,747][root][INFO] - >>> Seed experiment with random seed {args.random_seed}.
+[2024-07-25 13:09:18,749][root][INFO] - >>> Initialize Dataset {'name': 'CIFAR10', 'width': 32, 'height': 32, 'num_classes': 10, 'in_channels': 3}.
+[2024-07-25 13:09:18,749][root][INFO] - >>> Initialize Model swin-vit.
+[2024-07-25 13:11:38,468][root][INFO] - >>> Using config: 
+device: cuda
+random_seed: 42
+trust_remote_code: true
+path:
+  output_dir: ./output
+  data_dir: /home/phahn/datasets/CIFAR/
+  model_dir: ./storage/pretrained_models
+model:
+  name: swin-vit
+  mlp_dim: 3072
+  num_heads: 12
+  num_layers: 17
+  hidden_dim: 768
+  n_epochs: 5
+  window_size: 8
+dataset:
+  name: CIFAR10
+  width: 32
+  height: 32
+  num_classes: 10
+  in_channels: 3
+
+[2024-07-25 13:11:38,468][root][INFO] - >>> Creating output directory at: ./output
+[2024-07-25 13:11:38,469][root][INFO] - >>> Seed experiment with random seed {args.random_seed}.
+[2024-07-25 13:11:38,470][root][INFO] - >>> Initialize Dataset {'name': 'CIFAR10', 'width': 32, 'height': 32, 'num_classes': 10, 'in_channels': 3}.
+[2024-07-25 13:11:38,471][root][INFO] - >>> Initialize Model swin-vit.
+[2024-07-25 13:16:58,655][root][INFO] - >>> Using config: 
+device: cuda
+random_seed: 42
+trust_remote_code: true
+path:
+  output_dir: ./output
+  data_dir: /home/phahn/datasets/CIFAR/
+  model_dir: ./storage/pretrained_models
+model:
+  name: swin-vit
+  mlp_dim: 3072
+  num_heads: 12
+  num_layers: 17
+  hidden_dim: 768
+  n_epochs: 5
+  window_size: 8
+dataset:
+  name: CIFAR10
+  width: 32
+  height: 32
+  num_classes: 10
+  in_channels: 3
+
+[2024-07-25 13:16:58,655][root][INFO] - >>> Creating output directory at: ./output
+[2024-07-25 13:16:58,655][root][INFO] - >>> Seed experiment with random seed {args.random_seed}.
+[2024-07-25 13:16:58,657][root][INFO] - >>> Initialize Dataset {'name': 'CIFAR10', 'width': 32, 'height': 32, 'num_classes': 10, 'in_channels': 3}.
+[2024-07-25 13:16:58,657][root][INFO] - >>> Initialize Model swin-vit.
+[2024-07-25 13:17:01,075][root][INFO] - Train Loss: nan     Accuracy:3.125
+[2024-07-25 13:17:03,459][root][INFO] - Train Loss: nan     Accuracy:12.5
+[2024-07-25 13:17:05,411][root][INFO] - Train Loss: nan     Accuracy:7.8125
+[2024-07-25 13:17:07,317][root][INFO] - Train Loss: nan     Accuracy:14.0625
+[2024-07-25 13:17:09,227][root][INFO] - Train Loss: nan     Accuracy:9.375
+[2024-07-25 13:17:11,153][root][INFO] - Train Loss: nan     Accuracy:6.25
+[2024-07-25 13:17:13,055][root][INFO] - Train Loss: nan     Accuracy:9.375
+[2024-07-25 13:17:14,958][root][INFO] - Train Loss: nan     Accuracy:12.5
+[2024-07-25 13:17:16,887][root][INFO] - Train Loss: nan     Accuracy:4.6875
+[2024-07-25 13:17:18,836][root][INFO] - Train Loss: nan     Accuracy:7.8125
+[2024-07-25 13:17:20,818][root][INFO] - Train Loss: nan     Accuracy:7.8125
+[2024-07-25 13:17:22,794][root][INFO] - Train Loss: nan     Accuracy:12.5
+[2024-07-25 13:17:24,778][root][INFO] - Train Loss: nan     Accuracy:10.9375
+[2024-07-25 13:17:26,756][root][INFO] - Train Loss: nan     Accuracy:15.625
+[2024-07-25 13:17:28,728][root][INFO] - Train Loss: nan     Accuracy:12.5
+[2024-07-25 13:17:30,710][root][INFO] - Train Loss: nan     Accuracy:6.25
+[2024-07-25 13:17:33,118][root][INFO] - Train Loss: nan     Accuracy:4.6875
+[2024-07-25 13:17:35,120][root][INFO] - Train Loss: nan     Accuracy:7.8125
+[2024-07-25 13:17:37,123][root][INFO] - Train Loss: nan     Accuracy:9.375
+[2024-07-25 13:17:39,123][root][INFO] - Train Loss: nan     Accuracy:7.8125
+[2024-07-25 13:17:41,105][root][INFO] - Train Loss: nan     Accuracy:15.625
+[2024-07-25 13:17:43,090][root][INFO] - Train Loss: nan     Accuracy:14.0625
+[2024-07-25 13:17:45,094][root][INFO] - Train Loss: nan     Accuracy:18.75
+[2024-07-25 13:22:19,377][root][INFO] - >>> Using config: 
+device: cuda
+random_seed: 42
+trust_remote_code: true
+path:
+  output_dir: ./output
+  data_dir: /home/phahn/datasets/CIFAR/
+  model_dir: ./storage/pretrained_models
+model:
+  name: swin-vit
+  mlp_dim: 3072
+  num_heads: 12
+  num_layers: 17
+  hidden_dim: 768
+  n_epochs: 5
+  window_size: 4
+dataset:
+  name: CIFAR10
+  width: 32
+  height: 32
+  num_classes: 10
+  in_channels: 3
+
+[2024-07-25 13:22:19,378][root][INFO] - >>> Creating output directory at: ./output
+[2024-07-25 13:22:19,378][root][INFO] - >>> Seed experiment with random seed {args.random_seed}.
+[2024-07-25 13:22:19,380][root][INFO] - >>> Initialize Dataset {'name': 'CIFAR10', 'width': 32, 'height': 32, 'num_classes': 10, 'in_channels': 3}.
+[2024-07-25 13:22:19,380][root][INFO] - >>> Initialize Model swin-vit.
+[2024-07-25 13:22:21,951][root][INFO] - Train Loss: nan     Accuracy:3.125
+[2024-07-25 13:22:24,341][root][INFO] - Train Loss: nan     Accuracy:12.5
+[2024-07-25 13:22:26,363][root][INFO] - Train Loss: nan     Accuracy:7.8125
+[2024-07-25 13:22:28,361][root][INFO] - Train Loss: nan     Accuracy:14.0625
+[2024-07-25 13:22:48,293][root][INFO] - >>> Using config: 
+device: cuda
+random_seed: 42
+trust_remote_code: true
+path:
+  output_dir: ./output
+  data_dir: /home/phahn/datasets/CIFAR/
+  model_dir: ./storage/pretrained_models
+model:
+  name: swin-vit
+  mlp_dim: 3072
+  num_heads: 12
+  num_layers: 17
+  hidden_dim: 768
+  n_epochs: 5
+  window_size: 4
+dataset:
+  name: CIFAR10
+  width: 32
+  height: 32
+  num_classes: 10
+  in_channels: 3
+
+[2024-07-25 13:22:48,293][root][INFO] - >>> Creating output directory at: ./output
+[2024-07-25 13:22:48,293][root][INFO] - >>> Seed experiment with random seed {args.random_seed}.
+[2024-07-25 13:22:48,295][root][INFO] - >>> Initialize Dataset {'name': 'CIFAR10', 'width': 32, 'height': 32, 'num_classes': 10, 'in_channels': 3}.
+[2024-07-25 13:22:48,295][root][INFO] - >>> Initialize Model swin-vit.
+[2024-07-25 13:24:05,149][root][INFO] - >>> Using config: 
+device: cuda
+random_seed: 42
+trust_remote_code: true
+path:
+  output_dir: ./output
+  data_dir: /home/phahn/datasets/CIFAR/
+  model_dir: ./storage/pretrained_models
+model:
+  name: swin-vit
+  mlp_dim: 3072
+  num_heads: 12
+  num_layers: 17
+  hidden_dim: 768
+  n_epochs: 5
+  window_size: 4
+dataset:
+  name: CIFAR10
+  width: 32
+  height: 32
+  num_classes: 10
+  in_channels: 3
+
+[2024-07-25 13:24:05,150][root][INFO] - >>> Creating output directory at: ./output
+[2024-07-25 13:24:05,150][root][INFO] - >>> Seed experiment with random seed {args.random_seed}.
+[2024-07-25 13:24:05,152][root][INFO] - >>> Initialize Dataset {'name': 'CIFAR10', 'width': 32, 'height': 32, 'num_classes': 10, 'in_channels': 3}.
+[2024-07-25 13:24:05,152][root][INFO] - >>> Initialize Model swin-vit.
+[2024-07-25 13:30:20,175][root][INFO] - >>> Using config: 
+device: cuda
+random_seed: 42
+trust_remote_code: true
+path:
+  output_dir: ./output
+  data_dir: /home/phahn/datasets/CIFAR/
+  model_dir: ./storage/pretrained_models
+model:
+  name: swin-vit
+  mlp_dim: 3072
+  num_heads: 12
+  num_layers: 17
+  embed_dim: 128
+  n_epochs: 5
+  window_size: 4
+  patch_size: 4
+dataset:
+  name: CIFAR10
+  width: 32
+  height: 32
+  num_classes: 10
+  in_channels: 3
+
+[2024-07-25 13:30:20,176][root][INFO] - >>> Creating output directory at: ./output
+[2024-07-25 13:30:20,176][root][INFO] - >>> Seed experiment with random seed {args.random_seed}.
+[2024-07-25 13:30:20,177][root][INFO] - >>> Initialize Dataset {'name': 'CIFAR10', 'width': 32, 'height': 32, 'num_classes': 10, 'in_channels': 3}.
+[2024-07-25 13:30:20,178][root][INFO] - >>> Initialize Model swin-vit.
+[2024-07-25 13:37:14,467][root][INFO] - >>> Using config: 
+device: cuda
+random_seed: 42
+trust_remote_code: true
+path:
+  output_dir: ./output
+  data_dir: /home/phahn/datasets/CIFAR/
+  model_dir: ./storage/pretrained_models
+model:
+  name: swin-vit
+  mlp_dim: 3072
+  num_heads: 12
+  num_layers: 17
+  embed_dim: 96
+  n_epochs: 5
+  window_size: 4
+  patch_size: 4
+dataset:
+  name: CIFAR10
+  width: 32
+  height: 32
+  num_classes: 10
+  in_channels: 3
+
+[2024-07-25 13:37:14,467][root][INFO] - >>> Creating output directory at: ./output
+[2024-07-25 13:37:14,467][root][INFO] - >>> Seed experiment with random seed {args.random_seed}.
+[2024-07-25 13:37:14,469][root][INFO] - >>> Initialize Dataset {'name': 'CIFAR10', 'width': 32, 'height': 32, 'num_classes': 10, 'in_channels': 3}.
+[2024-07-25 13:37:14,469][root][INFO] - >>> Initialize Model swin-vit.
+[2024-07-25 13:38:04,124][root][INFO] - >>> Using config: 
+device: cuda
+random_seed: 42
+trust_remote_code: true
+path:
+  output_dir: ./output
+  data_dir: /home/phahn/datasets/CIFAR/
+  model_dir: ./storage/pretrained_models
+model:
+  name: swin-vit
+  mlp_dim: 3072
+  num_heads: 12
+  num_layers: 17
+  embed_dim: 96
+  n_epochs: 5
+  window_size: 4
+  patch_size: 4
+dataset:
+  name: CIFAR10
+  width: 32
+  height: 32
+  num_classes: 10
+  in_channels: 3
+
+[2024-07-25 13:38:04,124][root][INFO] - >>> Creating output directory at: ./output
+[2024-07-25 13:38:04,124][root][INFO] - >>> Seed experiment with random seed {args.random_seed}.
+[2024-07-25 13:38:04,126][root][INFO] - >>> Initialize Dataset {'name': 'CIFAR10', 'width': 32, 'height': 32, 'num_classes': 10, 'in_channels': 3}.
+[2024-07-25 13:38:04,126][root][INFO] - >>> Initialize Model swin-vit.
+[2024-07-25 13:42:49,983][root][INFO] - >>> Using config: 
+device: cuda
+random_seed: 42
+trust_remote_code: true
+path:
+  output_dir: ./output
+  data_dir: /home/phahn/datasets/CIFAR/
+  model_dir: ./storage/pretrained_models
+model:
+  name: swin-vit
+  mlp_dim: 3072
+  num_heads: 12
+  num_layers: 17
+  embed_dim: 96
+  n_epochs: 5
+  window_size: 4
+  patch_size: 4
+dataset:
+  name: CIFAR10
+  width: 32
+  height: 32
+  num_classes: 10
+  in_channels: 3
+
+[2024-07-25 13:42:49,984][root][INFO] - >>> Creating output directory at: ./output
+[2024-07-25 13:42:49,984][root][INFO] - >>> Seed experiment with random seed {args.random_seed}.
+[2024-07-25 13:42:49,986][root][INFO] - >>> Initialize Dataset {'name': 'CIFAR10', 'width': 32, 'height': 32, 'num_classes': 10, 'in_channels': 3}.
+[2024-07-25 13:42:49,986][root][INFO] - >>> Initialize Model swin-vit.
+[2024-07-25 13:43:28,394][root][INFO] - Train Loss: 2.289555072784424     Accuracy:10.9375
+[2024-07-25 13:43:40,989][root][INFO] - Train Loss: 1.8541795015335083     Accuracy:29.6875
+[2024-07-25 13:43:42,633][root][INFO] - Train Loss: 1.9145005941390991     Accuracy:32.8125
+[2024-07-25 13:43:44,274][root][INFO] - Train Loss: 1.9097598791122437     Accuracy:34.375
+[2024-07-25 13:43:45,918][root][INFO] - Train Loss: 1.9302089214324951     Accuracy:31.25
+[2024-07-25 13:43:47,562][root][INFO] - Train Loss: 1.7217891216278076     Accuracy:31.25
+[2024-07-25 13:43:49,203][root][INFO] - Train Loss: 1.9142791032791138     Accuracy:26.5625
+[2024-07-25 13:43:50,848][root][INFO] - Train Loss: 1.7677315473556519     Accuracy:34.375
+[2024-07-25 13:43:52,516][root][INFO] - Train Loss: 1.9378095865249634     Accuracy:34.375
+[2024-07-25 13:43:54,222][root][INFO] - Train Loss: 1.7153041362762451     Accuracy:35.9375
+[2024-07-25 13:43:55,890][root][INFO] - Train Loss: 1.622420310974121     Accuracy:42.1875
+[2024-07-25 13:43:57,557][root][INFO] - Train Loss: 1.8417086601257324     Accuracy:32.8125
+[2024-07-25 13:43:59,221][root][INFO] - Train Loss: 1.6605628728866577     Accuracy:39.0625
+[2024-07-25 13:44:00,886][root][INFO] - Train Loss: 1.539992094039917     Accuracy:35.9375
+[2024-07-25 13:44:02,549][root][INFO] - Train Loss: 1.6761538982391357     Accuracy:42.1875
+[2024-07-25 13:44:04,212][root][INFO] - Train Loss: 1.5776478052139282     Accuracy:42.1875
+[2024-07-25 13:44:06,484][root][INFO] - Train Loss: 1.4863872528076172     Accuracy:45.3125
+[2024-07-25 13:44:08,110][root][INFO] - Train Loss: 1.5831764936447144     Accuracy:39.0625
+[2024-07-25 13:44:09,729][root][INFO] - Train Loss: 1.5324379205703735     Accuracy:45.3125
+[2024-07-25 13:44:11,349][root][INFO] - Train Loss: 1.5689496994018555     Accuracy:35.9375
+[2024-07-25 13:44:12,971][root][INFO] - Train Loss: 1.7577440738677979     Accuracy:40.625
+[2024-07-25 13:44:14,591][root][INFO] - Train Loss: 1.7520394325256348     Accuracy:43.75
+[2024-07-25 13:44:16,209][root][INFO] - Train Loss: 1.5796383619308472     Accuracy:35.9375
+[2024-07-25 13:44:17,831][root][INFO] - Train Loss: 1.5013877153396606     Accuracy:39.0625
+[2024-07-25 13:45:14,211][root][INFO] - >>> Using config: 
+device: cuda
+random_seed: 42
+trust_remote_code: true
+path:
+  output_dir: ./output
+  data_dir: /home/phahn/datasets/birdset/
+  model_dir: ./storage/pretrained_models
+model:
+  name: swin-vit
+  mlp_dim: 3072
+  num_heads: 12
+  num_layers: 17
+  embed_dim: 96
+  n_epochs: 5
+  window_size: 4
+  patch_size: 4
+dataset:
+  name: HSN
+  width: 1024
+  height: 128
+  num_classes: 21
+  in_channels: 1
+
+[2024-07-25 13:45:14,212][root][INFO] - >>> Creating output directory at: ./output
+[2024-07-25 13:45:14,212][root][INFO] - >>> Seed experiment with random seed {args.random_seed}.
+[2024-07-25 13:45:14,214][root][INFO] - >>> Initialize Dataset {'name': 'HSN', 'width': 1024, 'height': 128, 'num_classes': 21, 'in_channels': 1}.
+[2024-07-25 13:45:14,214][birdset.datamodule.base_datamodule][INFO] - Check if preparing has already been done.
+[2024-07-25 13:45:14,214][birdset.datamodule.base_datamodule][INFO] - Prepare Data
+[2024-07-25 13:45:14,214][birdset.datamodule.base_datamodule][INFO] - > Loading data set.
+[2024-07-25 13:45:16,239][birdset.datamodule.birdset_datamodule][INFO] - >> Mapping train data.
+[2024-07-25 13:45:16,360][birdset.datamodule.birdset_datamodule][INFO] - >> Smart Sampling
+[2024-07-25 13:45:30,575][birdset.datamodule.birdset_datamodule][INFO] - >> One-hot-encode classes
+[2024-07-25 13:45:30,806][birdset.datamodule.base_datamodule][INFO] - Train fingerprint found in /home/phahn/datasets/birdset/HSN/HSN_processed_42_bb4a62538b1fcbd0, saving to disk is skipped
+[2024-07-25 13:45:30,807][birdset.datamodule.base_datamodule][INFO] - fit
+[2024-07-25 13:45:30,901][root][INFO] - >>> Initialize Model swin-vit.
+[2024-07-25 13:45:31,306][birdset.datamodule.base_datamodule][INFO] - Check if preparing has already been done.
+[2024-07-25 13:45:31,306][birdset.datamodule.base_datamodule][INFO] - Skip preparing.
+[2024-07-25 13:46:45,701][root][INFO] - >>> Using config: 
+device: cuda
+random_seed: 42
+trust_remote_code: true
+path:
+  output_dir: ./output
+  data_dir: /home/phahn/datasets/birdset/
+  model_dir: ./storage/pretrained_models
+model:
+  name: swin-vit
+  mlp_dim: 3072
+  num_heads: 12
+  num_layers: 17
+  embed_dim: 96
+  n_epochs: 5
+  window_size: 4
+  patch_size: 4
+dataset:
+  name: HSN
+  width: 1024
+  height: 128
+  num_classes: 21
+  in_channels: 1
+
+[2024-07-25 13:46:45,702][root][INFO] - >>> Creating output directory at: ./output
+[2024-07-25 13:46:45,702][root][INFO] - >>> Seed experiment with random seed {args.random_seed}.
+[2024-07-25 13:46:45,704][root][INFO] - >>> Initialize Dataset {'name': 'HSN', 'width': 1024, 'height': 128, 'num_classes': 21, 'in_channels': 1}.
+[2024-07-25 13:46:45,704][birdset.datamodule.base_datamodule][INFO] - Check if preparing has already been done.
+[2024-07-25 13:46:45,704][birdset.datamodule.base_datamodule][INFO] - Prepare Data
+[2024-07-25 13:46:45,704][birdset.datamodule.base_datamodule][INFO] - > Loading data set.
+[2024-07-25 13:46:47,876][birdset.datamodule.birdset_datamodule][INFO] - >> Mapping train data.
+[2024-07-25 13:46:47,985][birdset.datamodule.birdset_datamodule][INFO] - >> Smart Sampling
+[2024-07-25 13:47:02,085][birdset.datamodule.birdset_datamodule][INFO] - >> One-hot-encode classes
+[2024-07-25 13:47:02,308][birdset.datamodule.base_datamodule][INFO] - Train fingerprint found in /home/phahn/datasets/birdset/HSN/HSN_processed_42_bb4a62538b1fcbd0, saving to disk is skipped
+[2024-07-25 13:47:02,308][birdset.datamodule.base_datamodule][INFO] - fit
+[2024-07-25 13:47:02,374][root][INFO] - >>> Initialize Model swin-vit.
+[2024-07-25 13:47:02,752][birdset.datamodule.base_datamodule][INFO] - Check if preparing has already been done.
+[2024-07-25 13:47:02,752][birdset.datamodule.base_datamodule][INFO] - Skip preparing.
+[2024-07-25 13:50:08,479][root][INFO] - >>> Using config: 
+device: cuda
+random_seed: 42
+trust_remote_code: true
+path:
+  output_dir: ./output
+  data_dir: /home/phahn/datasets/birdset/
+  model_dir: ./storage/pretrained_models
+model:
+  name: swin-vit
+  mlp_dim: 3072
+  num_heads: 12
+  num_layers: 17
+  embed_dim: 96
+  n_epochs: 5
+  window_size: 4
+  patch_size: 4
+dataset:
+  name: HSN
+  width: 1024
+  height: 128
+  num_classes: 21
+  in_channels: 1
+
+[2024-07-25 13:50:08,479][root][INFO] - >>> Creating output directory at: ./output
+[2024-07-25 13:50:08,479][root][INFO] - >>> Seed experiment with random seed {args.random_seed}.
+[2024-07-25 13:50:08,481][root][INFO] - >>> Initialize Dataset {'name': 'HSN', 'width': 1024, 'height': 128, 'num_classes': 21, 'in_channels': 1}.
+[2024-07-25 13:50:08,481][birdset.datamodule.base_datamodule][INFO] - Check if preparing has already been done.
+[2024-07-25 13:50:08,481][birdset.datamodule.base_datamodule][INFO] - Prepare Data
+[2024-07-25 13:50:08,482][birdset.datamodule.base_datamodule][INFO] - > Loading data set.
+[2024-07-25 13:50:10,748][birdset.datamodule.birdset_datamodule][INFO] - >> Mapping train data.
+[2024-07-25 13:50:10,856][birdset.datamodule.birdset_datamodule][INFO] - >> Smart Sampling
+[2024-07-25 13:50:24,938][birdset.datamodule.birdset_datamodule][INFO] - >> One-hot-encode classes
+[2024-07-25 13:50:25,159][birdset.datamodule.base_datamodule][INFO] - Train fingerprint found in /home/phahn/datasets/birdset/HSN/HSN_processed_42_bb4a62538b1fcbd0, saving to disk is skipped
+[2024-07-25 13:50:25,160][birdset.datamodule.base_datamodule][INFO] - fit
+[2024-07-25 13:50:25,226][root][INFO] - >>> Initialize Model swin-vit.
+[2024-07-25 13:50:25,760][birdset.datamodule.base_datamodule][INFO] - Check if preparing has already been done.
+[2024-07-25 13:50:25,760][birdset.datamodule.base_datamodule][INFO] - Skip preparing.
+[2024-07-25 13:50:33,816][root][INFO] - Train Loss: 0.78076171875
+[2024-07-25 13:50:43,671][root][INFO] - Train Loss: 0.1993408203125
+[2024-07-25 13:50:47,903][root][INFO] - Train Loss: 0.187744140625
+[2024-07-25 13:50:52,363][root][INFO] - Train Loss: 0.1884765625
+[2024-07-25 13:50:56,909][root][INFO] - Train Loss: 0.189697265625
+[2024-07-25 13:51:01,486][root][INFO] - Train Loss: 0.1781005859375
+[2024-07-25 13:51:06,068][root][INFO] - Train Loss: 0.183349609375
+[2024-07-25 13:51:10,502][root][INFO] - Train Loss: 0.18310546875
+[2024-07-25 13:51:14,760][root][INFO] - Train Loss: 0.2015380859375
+[2024-07-25 13:51:19,016][root][INFO] - Train Loss: 0.186279296875
+[2024-07-25 13:51:23,279][root][INFO] - Train Loss: 0.1763916015625
+[2024-07-25 13:51:27,544][root][INFO] - Train Loss: 0.1976318359375
+[2024-07-25 13:51:31,812][root][INFO] - Train Loss: 0.1680908203125
+[2024-07-25 13:51:36,081][root][INFO] - Train Loss: 0.1968994140625
+[2024-07-25 13:51:40,351][root][INFO] - Train Loss: 0.1773681640625
+[2024-07-25 13:51:44,623][root][INFO] - Train Loss: 0.1854248046875
+[2024-07-25 13:51:48,904][root][INFO] - Train Loss: 0.1722412109375
+[2024-07-25 13:51:53,182][root][INFO] - Train Loss: 0.184326171875

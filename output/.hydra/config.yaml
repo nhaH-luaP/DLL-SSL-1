@@ -3,18 +3,20 @@ random_seed: 42
 trust_remote_code: true
 path:
   output_dir: ./output
-  data_dir: ./data
+  data_dir: /home/phahn/datasets/birdset/
   model_dir: ./storage/pretrained_models
 model:
-  name: vit_17
-  mlp_dim: 512
+  name: swin-vit
+  mlp_dim: 3072
   num_heads: 12
   num_layers: 17
-  hidden_dim: 120
+  embed_dim: 96
   n_epochs: 5
+  window_size: 4
+  patch_size: 4
 dataset:
-  name: CIFAR10
-  width: 32
-  height: 32
-  num_classes: 10
-  in_channels: 3
+  name: HSN
+  width: 1024
+  height: 128
+  num_classes: 21
+  in_channels: 1

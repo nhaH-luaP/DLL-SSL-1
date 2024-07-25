@@ -3,3 +3,5 @@ width: 1024
 height: 128
 num_classes: 21
 in_channels: 1
+num_workers: 1
+val_split: 0.25

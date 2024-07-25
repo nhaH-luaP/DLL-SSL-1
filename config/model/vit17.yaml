@@ -1,6 +1,0 @@
-name: vit_17
-mlp_dim: 3072
-num_heads: 12
-num_layers: 17
-hidden_dim: 768 # hidden_dim must be divisible by num_heads
-n_epochs: 5

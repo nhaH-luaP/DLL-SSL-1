@@ -341,18 +341,18 @@ class VisionTransformerModule(L.LightningModule):
                                          num_classes=num_classes, in_channels=in_channels)
 
     def training_step(self, batch, batch_idx):
-        if type(batch) == list:
-            x, y = batch
-            out = self.model(x)
-            loss = nn.functional.cross_entropy(out, y)
-            pred = out.softmax(-1).argmax(-1)
-            acc = torch.sum(pred == y) / x.shape[0]
-            if batch_idx % 50 == 0:
-                logging.info(f"Train Loss: {loss.item()}     Accuracy:{acc*100}")
-        else:
-            x, y = batch['input_values'], batch['labels']
-            out = self.model(x)
-            loss = nn.functional.binary_cross_entropy_with_logits(out, y)
+        #if type(batch) == list:
+        #    x, y = batch
+        #    out = self.model(x)
+        #    loss = nn.functional.cross_entropy(out, y)
+        #    pred = out.softmax(-1).argmax(-1)
+        #    acc = torch.sum(pred == y) / x.shape[0]
+        #    if batch_idx % 50 == 0:
+        #        logging.info(f"Train Loss: {loss.item()}     Accuracy:{acc*100}")
+        #else:
+        x, y = batch['input_values'], batch['labels']
+        out = self.model(x)
+        loss = nn.functional.binary_cross_entropy_with_logits(out, y)
         
         self.log("train_loss", loss.item())
         return loss

@@ -112,14 +112,12 @@ hydra:
     hydra:
     - hydra.mode=RUN
     task:
-    - trust_remote_code=True
-    - dataset=cifar10
-    - model.mlp_dim=512
-    - model.hidden_dim=120
+    - path.data_dir=/home/phahn/datasets/birdset/
+    - dataset=hsn
   job:
     name: basic_train
     chdir: null
-    override_dirname: dataset=cifar10,model.hidden_dim=120,model.mlp_dim=512,trust_remote_code=True
+    override_dirname: dataset=hsn,path.data_dir=/home/phahn/datasets/birdset/
     id: ???
     num: ???
     config_name: config
@@ -149,8 +147,8 @@ hydra:
       provider: schema
     output_dir: /home/phahn/repositories/DLL-SSL-1/output
     choices:
-      dataset: cifar10
-      model: vit17
+      dataset: hsn
+      model: swin_vit
       hydra/env: default
       hydra/callbacks: null
       hydra/job_logging: default

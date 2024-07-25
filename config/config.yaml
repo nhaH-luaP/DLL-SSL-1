@@ -1,16 +1,18 @@
 defaults:
   - _self_
-  - model: vit17
+  - model: swin_vit
   - dataset: hsn
 
 device: cuda
 random_seed: 42
 trust_remote_code: True
+task: multilabel
 
 path:
   output_dir: ./output
   data_dir: ./data
   model_dir: ./storage/pretrained_models
+  hf_path: DBD-research-group/BirdSet
 
 
 hydra:

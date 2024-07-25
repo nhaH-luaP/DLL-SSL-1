@@ -1,0 +1,9 @@
+name: swin-vit
+type: vision
+mlp_dim: 3072
+num_heads: 12
+num_layers: 17
+embed_dim: 96 # embed_dim must be divisible by num_heads
+n_epochs: 5
+window_size: 4
+patch_size: 4
