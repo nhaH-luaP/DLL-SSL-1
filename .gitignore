@@ -2,3 +2,6 @@
 lightning_logs/
 .vscode/
 __pycache__/
+
+# directory for birdset data
+data_birdset/
