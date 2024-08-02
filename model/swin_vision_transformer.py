@@ -656,7 +656,7 @@ class SWINVisionTransformerModule(L.LightningModule):
         x, y = batch['input_values'], batch['labels']
         out = self.model(x)
         loss = nn.functional.binary_cross_entropy_with_logits(out, y)
-        self.log("train_loss", loss.item())
+        self.log_dict({"train_loss": loss.item()})
         return loss
     
     def test_step(self, batch, batch_idx):
@@ -665,6 +665,8 @@ class SWINVisionTransformerModule(L.LightningModule):
         # Getting logits from the model and calculate loss
         logits = self.model(x)
         loss = nn.functional.binary_cross_entropy_with_logits(logits, y)
+
+        #TODO(Paul): Take logits into external function which calculates various metrics for evaluation
 
         # Calculate Accuracy in a multi-label setting
         probas = torch.nn.functional.sigmoid(logits)
@@ -675,9 +677,16 @@ class SWINVisionTransformerModule(L.LightningModule):
         self.log_dict({'test_loss': loss, 'test_acc': test_acc})
 
     def configure_optimizers(self):
+        #TODO(Paul): Fill numbers with params from self
         optimizer = torch.optim.SGD(self.parameters(), lr=1e-2, weight_decay=5e-4, nesterov=True, momentum=0.9)
-        return optimizer
+        lr_scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer=optimizer, T_max=5)
+        return [optimizer], [lr_scheduler]
     
-    def configure_lr_scheduler(self):
-        lr_scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(T_max=5)
-        return lr_scheduler
+    def prepare_finetuning(self):
+        # Freeze all layers
+        for param in self.model.parameters():
+            param.requires_grad = False
+
+        # Unfreeze Linear Head
+        for param in self.model.head.parameters():
+            param.requires_grad = True

@@ -13,6 +13,7 @@ path:
   data_dir: ./data
   model_dir: ./storage/pretrained_models
   hf_path: DBD-research-group/BirdSet
+  pretrained_weights_dir: ./pretrained_weights/vit_swin_save_state_example.pth
 
 
 hydra:

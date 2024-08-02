@@ -5,3 +5,7 @@ __pycache__/
 
 # directory for birdset data
 data_birdset/
+
+# directory for pretrained weights
+pretrained_weights/
+output/
