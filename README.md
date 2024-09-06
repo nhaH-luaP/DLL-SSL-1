@@ -4,7 +4,7 @@
 Installing all dependencies for this repository is a pain in the butt. You can try to run the following lines of code but im not quite sure this will work...
 
 ```
-conda create -n dll-ssl
+conda create -n dll-ssl python=3.10
 conda activate dll-ssl
 pip install -r requirements.txt
 ```
@@ -13,7 +13,7 @@ pip install -r requirements.txt
 There is a workaround in this directory to work around problems arising from using a fairseq model and hydra configuration. Therefore, we do not really use hydra, but a config-yaml file that is manually loaded into the main during the run. Therefore, you cannot really work with command-line args but have to adjust configurations manually in the config.yaml file.
 
 ## Open problems that i currently see
-- What exactly is mixup doing and does it help?
+- What exactly is mixup doing and does it help? (Implementation from EAT repo, not sure if this is what we are looking for)
 - How can we include training on a subset of vocal data here using the birdset
 - Is Accuracy correctly calculated? Seems to be on one single value throughout the whole training (or maybe our model is always guessing the same class, which would lead to the same results)
 - More thoughts on the accuracy problem. In a multi label setting with few true labels per instance, guessing 0 all the way is a strategy to reach like 95% accuracy but still only
