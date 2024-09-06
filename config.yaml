@@ -1,0 +1,26 @@
+test: test
+device: cuda
+random_seed: 42
+trust_remote_code: True
+task: multilabel
+
+dataset:
+  name: HSN
+  width: 1024
+  height: 128
+  num_classes: 21
+  in_channels: 1
+  num_workers: 5
+  val_split: 0.25
+
+path:
+  output_dir: ./output
+  data_dir: /home/phahn/datasets/birdset/HSN/
+  model_dir: ./storage/pretrained_models
+  hf_path: DBD-research-group/BirdSet
+  pretrained_weights_dir: /home/phahn/repositories/DLL-SSL-1/pretrained_weights/checkpoint_last.pt
+
+model:
+  learning_rate: 1e-1
+  weight_decay: 5e-2
+  num_epochs: 1
