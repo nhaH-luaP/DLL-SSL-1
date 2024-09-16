@@ -14,13 +14,13 @@ dataset:
   val_split: 0.25
 
 path:
-  output_dir: ./output
-  data_dir: /home/phahn/datasets/birdset/HSN/
+  output_dir: /mnt/stud/work/deeplearninglab/ss2024/ssl-1/output
+  data_dir: /mnt/stud/work/deeplearninglab/ss2024/ssl-1/data_birdset/HSN/
   model_dir: ./storage/pretrained_models
   hf_path: DBD-research-group/BirdSet
-  pretrained_weights_dir: /home/phahn/repositories/DLL-SSL-1/pretrained_weights/checkpoint_last.pt
+  pretrained_weights_dir: /mnt/stud/work/deeplearninglab/ss2024/ssl-1/pretraining-checkpoints/EAT-base_epoch30_pt.pt
 
 model:
-  learning_rate: 1e-1
+  learning_rate: 1e-3
   weight_decay: 5e-2
-  num_epochs: 1
+  num_epochs: 100
