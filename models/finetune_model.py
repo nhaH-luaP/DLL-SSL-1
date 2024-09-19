@@ -6,6 +6,8 @@ import torch.nn.functional as F
 
 import lightning as L
 
+import numpy as np
+
 from sklearn.metrics import average_precision_score, accuracy_score
 
 
@@ -87,12 +89,21 @@ class EATFairseqModule(L.LightningModule):
         logits = self.linear_classifier(features)
         return logits
     
+    def _calculate_mAP(self, output, target):
+        classes_num = target.shape[-1]
+        ap_values = {}
+        for k in range(classes_num):
+            avg_precision = average_precision_score(target[:, k], output[:, k], average=None)
+            ap_values[k] = avg_precision
+        mean_ap = np.nanmean(list(ap_values.values()))
+        return mean_ap, ap_values
+    
     def calculate_metrics(self, logits, y):
         # Calculate Accuracy in a multi-label setting
         probas = torch.nn.functional.sigmoid(logits)
         preds = probas.flatten() >= 0.5
         test_acc = accuracy_score(y_true=y.flatten().cpu(), y_pred=preds.cpu())
-        mAP = average_precision_score(y_true=y.cpu(), y_score=probas.cpu())
+        mAP = self._calculate_mAP(target=y.cpu(), output=probas.cpu())
         return test_acc, mAP
 
     def reduce_features(self, features):
