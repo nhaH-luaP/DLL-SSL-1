@@ -103,7 +103,7 @@ class EATFairseqModule(L.LightningModule):
         probas = torch.nn.functional.sigmoid(logits)
         preds = probas.flatten() >= 0.5
         test_acc = accuracy_score(y_true=y.flatten().cpu(), y_pred=preds.cpu())
-        mAP = self._calculate_mAP(target=y.cpu(), output=probas.cpu())
+        mAP, _ = self._calculate_mAP(target=y.cpu(), output=probas.cpu())
         return test_acc, mAP
 
     def reduce_features(self, features):
