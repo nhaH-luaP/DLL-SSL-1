@@ -7,6 +7,7 @@ import json
 import logging
 
 from lightning import Trainer
+from lightning.pytorch.loggers import WandbLogger
 from omegaconf import OmegaConf
 
 
@@ -23,6 +24,12 @@ def main():
     # Enable reproducability
     logging.info(">>> Seed experiment with random seed {args.random_seed}.")
     seed_everything(args.random_seed + 42)
+
+    # Init wandb logger
+    wandb_logger = WandbLogger(
+        project=args.wandb.project,
+        name=args.wandb.run_name
+    )
     
     # Initialize Dataset and set to fit
     logging.info(f">>> Initialize Dataset {args.dataset}.")
@@ -38,7 +45,7 @@ def main():
     metrics_callback = MetricsCallback()
 
     # Finetune Model
-    trainer = Trainer(max_epochs=args.model.num_epochs, callbacks=[metrics_callback])
+    trainer = Trainer(max_epochs=args.model.num_epochs, callbacks=[metrics_callback], logger=wandb_logger)
     trainer.fit(model=model, datamodule=dm)
 
     # Evaluate Model

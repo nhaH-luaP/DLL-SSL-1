@@ -24,3 +24,7 @@ model:
   learning_rate: 1e-3
   weight_decay: 5e-2
   num_epochs: 100
+
+wandb:
+  project: Finetuning-BirdSet
+  run_name: finetuning-HSN-Test
