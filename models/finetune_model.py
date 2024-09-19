@@ -40,7 +40,7 @@ class EATFairseqModule(L.LightningModule):
         loss = nn.functional.binary_cross_entropy_with_logits(logits, y)
 
         # Logging
-        self.log_dict({'train_loss': loss.item()})
+        self.log_dict({'train/loss': loss.item()})
 
         # Return Loss for optimization
         return loss
