@@ -22,7 +22,7 @@ def main():
     os.makedirs(args.path.output_dir, exist_ok=True)
 
     # Enable reproducability
-    logging.info(">>> Seed experiment with random seed {args.random_seed}.")
+    logging.info(f">>> Seed experiment with random seed {args.random_seed}.")
     seed_everything(args.random_seed + 42)
 
     # Init wandb logger
@@ -53,7 +53,7 @@ def main():
     trainer.test(model=model, datamodule=dm)
 
     # Extract metrics and export into json file
-    metrics_dict = {'train_metrics':metrics_callback.train_metrics, 'test_metrics':metrics_callback.test_metrics}
+    metrics_dict = {'train_metrics': metrics_callback.train_metrics, 'test_metrics': metrics_callback.test_metrics}
     with open(os.path.join(args.path.output_dir, 'results.json'), 'w') as f:
         json.dump(metrics_dict, f)
 

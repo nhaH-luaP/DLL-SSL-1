@@ -57,7 +57,7 @@ class EATFairseqModule(L.LightningModule):
         test_acc, mAP = self.calculate_metrics(logits, y)
 
         # Logging
-        self.log_dict({'val_loss': loss, 'val_acc': test_acc, 'val_mAP':mAP})
+        self.log_dict({'val/loss': loss, 'val/hamming_score': test_acc, 'val/mAP':mAP})
     
     def test_step(self, batch, batch_idx):
         # Get logits
@@ -71,7 +71,7 @@ class EATFairseqModule(L.LightningModule):
         test_acc, mAP = self.calculate_metrics(logits, y)
 
         # Logging
-        self.log_dict({'test_loss': loss, 'test_acc': test_acc, 'mAP':mAP})
+        self.log_dict({'test/loss': loss, 'test/hamming_score': test_acc, 'test/mAP':mAP})
 
     def configure_optimizers(self):
         optimizer = torch.optim.SGD(self.parameters(), lr=self.optim_params["learning_rate"], weight_decay=self.optim_params["weight_decay"], nesterov=True, momentum=0.9)
@@ -98,11 +98,17 @@ class EATFairseqModule(L.LightningModule):
         mean_ap = np.nanmean(list(ap_values.values()))
         return mean_ap, ap_values
     
+    def _calculate_hamming_score(self, y_true, y_pred):
+        return (
+            (y_true & y_pred).sum(axis=1) / (y_true | y_pred).sum(axis=1)
+        ).mean()
+    
     def calculate_metrics(self, logits, y):
         # Calculate Accuracy in a multi-label setting
         probas = torch.nn.functional.sigmoid(logits)
-        preds = probas.flatten() >= 0.5
-        test_acc = accuracy_score(y_true=y.flatten().cpu(), y_pred=preds.cpu())
+        preds = (probas >= 0.5).cpu().numpy().astype(int)
+        # test_acc = accuracy_score(y_true=y.flatten().cpu(), y_pred=preds.cpu())
+        test_acc = self._calculate_hamming_score(y_pred=preds, y_true=y.cpu().numpy().astype(int))
         mAP, _ = self._calculate_mAP(target=y.cpu(), output=probas.cpu())
         return test_acc, mAP
 

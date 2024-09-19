@@ -1,5 +1,4 @@
 # To be done
-lightning_logs/
 .vscode/
 __pycache__/
 
@@ -9,3 +8,9 @@ data_birdset/
 # directory for pretrained weights
 pretrained_weights/
 output/
+
+# logs
+lightning_logs/
+wandb/
+*err
+*log
