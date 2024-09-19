@@ -10,8 +10,11 @@ dataset:
   height: 128
   num_classes: 21
   in_channels: 1
-  num_workers: 5
+  num_workers: 3
   val_split: 0.25
+  classlimit: 500
+  eventlimit: 1
+  sampling_rate: 32000
 
 path:
   output_dir: /mnt/stud/work/deeplearninglab/ss2024/ssl-1/output

@@ -56,9 +56,9 @@ def build_dataset(args):
             n_workers=args.dataset.num_workers,
             val_split=args.dataset.val_split,
             task=args.task,
-            classlimit=500,
-            eventlimit=5,
-            sampling_rate=32000,
+            classlimit=args.dataset.classlimit,
+            eventlimit=args.dataset.eventlimit,
+            sampling_rate=args.dataset.sampling_rate,
         ),
     )
     return dm
