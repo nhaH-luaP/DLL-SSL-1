@@ -8,7 +8,7 @@ import lightning as L
 
 import numpy as np
 
-from sklearn.metrics import average_precision_score, accuracy_score
+from sklearn.metrics import average_precision_score, accuracy_score, roc_auc_score
 
 
 class EATFairseqModule(L.LightningModule):
@@ -54,10 +54,10 @@ class EATFairseqModule(L.LightningModule):
         loss = nn.functional.binary_cross_entropy_with_logits(logits, y)
 
         # Calculate metrics
-        test_acc, mAP = self.calculate_metrics(logits, y)
+        test_acc, mAP, cmAP, auroc  = self.calculate_metrics(logits, y)
 
         # Logging
-        self.log_dict({'val/loss': loss, 'val/hamming_score': test_acc, 'val/mAP':mAP})
+        self.log_dict({'val/loss': loss, 'val/hamming_score': test_acc, 'val/mAP': mAP, 'val/cmAP': cmAP, 'val/AUROC': auroc})
     
     def test_step(self, batch, batch_idx):
         # Get logits
@@ -68,10 +68,10 @@ class EATFairseqModule(L.LightningModule):
         loss = nn.functional.binary_cross_entropy_with_logits(logits, y)
 
         # Calculate metrics
-        test_acc, mAP = self.calculate_metrics(logits, y)
+        test_acc, mAP, cmAP, auroc = self.calculate_metrics(logits, y)
 
         # Logging
-        self.log_dict({'test/loss': loss, 'test/hamming_score': test_acc, 'test/mAP':mAP})
+        self.log_dict({'test/loss': loss, 'test/hamming_score': test_acc, 'test/mAP': mAP, 'val/cmAP': cmAP, 'val/AUROC': auroc})
 
     def configure_optimizers(self):
         optimizer = torch.optim.SGD(self.parameters(), lr=self.optim_params["learning_rate"], weight_decay=self.optim_params["weight_decay"], nesterov=True, momentum=0.9)
@@ -110,7 +110,9 @@ class EATFairseqModule(L.LightningModule):
         # test_acc = accuracy_score(y_true=y.flatten().cpu(), y_pred=preds.cpu())
         test_acc = self._calculate_hamming_score(y_pred=preds, y_true=y.cpu().numpy().astype(int))
         mAP, _ = self._calculate_mAP(target=y.cpu(), output=probas.cpu())
-        return test_acc, mAP
+        cmAP = average_precision_score(y.cpu(), preds.cpu(), average="macro")
+        auroc = roc_auc_score(y_true=y.cpu(), y_score=preds.cpu())
+        return test_acc, mAP, cmAP, auroc
 
     def reduce_features(self, features):
         if self.prediction_mode == "mean_pooling":
