@@ -106,7 +106,10 @@ class EATFairseqModule(L.LightningModule):
     def calculate_metrics(self, logits, y):
         # Calculate Accuracy in a multi-label setting
         probas = torch.nn.functional.sigmoid(logits)
-        preds = (probas >= 0.5).cpu().numpy().astype(int)
+        preds = probas.cpu()
+        topk, kidx = preds.topk(k=1, dim=1)
+        preds.zero_()
+        preds[torch.arange(preds.size(0))[:, None], kidx] = 1
         # test_acc = accuracy_score(y_true=y.flatten().cpu(), y_pred=preds.cpu())
         test_acc = self._calculate_hamming_score(y_pred=preds, y_true=y.cpu().numpy().astype(int))
         mAP, _ = self._calculate_mAP(target=y.cpu(), output=probas.cpu())
