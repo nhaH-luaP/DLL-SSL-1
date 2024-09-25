@@ -110,8 +110,11 @@ class EATFairseqModule(L.LightningModule):
         # test_acc = accuracy_score(y_true=y.flatten().cpu(), y_pred=preds.cpu())
         test_acc = self._calculate_hamming_score(y_pred=preds, y_true=y.cpu().numpy().astype(int))
         mAP, _ = self._calculate_mAP(target=y.cpu(), output=probas.cpu())
-        cmAP = average_precision_score(y.cpu(), preds.cpu(), average="macro")
-        auroc = roc_auc_score(y_true=y.cpu(), y_score=preds.cpu())
+        cmAP = average_precision_score(y.cpu(), probas.cpu(), average="macro")
+        try:
+            auroc = roc_auc_score(y_true=y.cpu(), y_score=probas.cpu())
+        except:
+            auroc = 0.5
         return test_acc, mAP, cmAP, auroc
 
     def reduce_features(self, features):
