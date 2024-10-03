@@ -35,6 +35,10 @@ class EATFairseqModule(L.LightningModule):
         self.auroc_fn = MultilabelAUROC(num_labels=num_classes)
         self.cmap_fn = MultilabelAveragePrecision(num_labels=num_classes, threshold=None, average="macro")
 
+        # Set trainable params for finetuning
+        self.model.requires_grad_(False)
+        self.linear_classifier.requires_grad_(True)
+
     def training_step(self, batch, batch_idx):
         # Perform Mixup and then get the logits
         x, y = batch['input_values'], batch['labels']
