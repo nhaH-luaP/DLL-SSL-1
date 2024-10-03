@@ -1,14 +1,17 @@
 from models.mixup import Mixup
+from utils import TopKAccuracy
 
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
+from torchmetrics.classification import MultilabelAUROC
+from torchmetrics.classification.average_precision import MultilabelAveragePrecision
 
 import lightning as L
 
 import numpy as np
 
-from sklearn.metrics import average_precision_score, accuracy_score, roc_auc_score
+from sklearn.metrics import average_precision_score
 
 
 class EATFairseqModule(L.LightningModule):
@@ -28,6 +31,9 @@ class EATFairseqModule(L.LightningModule):
                 label_smoothing=0.0,
                 num_classes=num_classes,
             )
+        self.accuracy_fn = TopKAccuracy()
+        self.auroc_fn = MultilabelAUROC(num_labels=num_classes)
+        self.cmap_fn = MultilabelAveragePrecision(num_labels=num_classes, threshold=None, average="macro")
 
     def training_step(self, batch, batch_idx):
         # Perform Mixup and then get the logits
@@ -54,10 +60,10 @@ class EATFairseqModule(L.LightningModule):
         loss = nn.functional.binary_cross_entropy_with_logits(logits, y)
 
         # Calculate metrics
-        test_acc, mAP, cmAP, auroc  = self.calculate_metrics(logits, y)
+        test_acc, hamming_score, mAP, cmAP, auroc  = self.calculate_metrics(logits, y)
 
         # Logging
-        self.log_dict({'val/loss': loss, 'val/hamming_score': test_acc, 'val/mAP': mAP, 'val/cmAP': cmAP, 'val/AUROC': auroc})
+        self.log_dict({'val/loss': loss, 'val/acc': test_acc, 'val/hamming_score': hamming_score, 'val/mAP': mAP, 'val/cmAP': cmAP, 'val/AUROC': auroc})
     
     def test_step(self, batch, batch_idx):
         # Get logits
@@ -68,10 +74,10 @@ class EATFairseqModule(L.LightningModule):
         loss = nn.functional.binary_cross_entropy_with_logits(logits, y)
 
         # Calculate metrics
-        test_acc, mAP, cmAP, auroc = self.calculate_metrics(logits, y)
+        test_acc, hamming_score, mAP, cmAP, auroc = self.calculate_metrics(logits, y)
 
         # Logging
-        self.log_dict({'test/loss': loss, 'test/hamming_score': test_acc, 'test/mAP': mAP, 'val/cmAP': cmAP, 'val/AUROC': auroc})
+        self.log_dict({'test/loss': loss, 'val/acc': test_acc, 'val/hamming_score': hamming_score, 'test/mAP': mAP, 'val/cmAP': cmAP, 'val/AUROC': auroc})
 
     def configure_optimizers(self):
         optimizer = torch.optim.SGD(self.parameters(), lr=self.optim_params["learning_rate"], weight_decay=self.optim_params["weight_decay"], nesterov=True, momentum=0.9)
@@ -104,18 +110,15 @@ class EATFairseqModule(L.LightningModule):
         ).mean()
     
     def calculate_metrics(self, logits, y):
-        # Calculate Accuracy in a multi-label setting
         probas = torch.nn.functional.sigmoid(logits)
         preds = (probas >= 0.5).cpu().numpy().astype(int)
-        # test_acc = accuracy_score(y_true=y.flatten().cpu(), y_pred=preds.cpu())
-        test_acc = self._calculate_hamming_score(y_pred=preds, y_true=y.cpu().numpy().astype(int))
+
+        test_acc = self.accuracy_fn(probas, y)
+        hamming_score = self._calculate_hamming_score(y_pred=preds, y_true=y.cpu().numpy().astype(int))
         mAP, _ = self._calculate_mAP(target=y.cpu(), output=probas.cpu())
-        cmAP = average_precision_score(y.cpu(), probas.cpu(), average="macro")
-        try:
-            auroc = roc_auc_score(y_true=y.cpu(), y_score=probas.cpu())
-        except:
-            auroc = 0.5
-        return test_acc, mAP, cmAP, auroc
+        cmAP = self.cmap_fn(logits, y.long())
+        auroc = self.auroc_fn(probas, y.long())
+        return test_acc, hamming_score, mAP, cmAP, auroc
 
     def reduce_features(self, features):
         if self.prediction_mode == "mean_pooling":
