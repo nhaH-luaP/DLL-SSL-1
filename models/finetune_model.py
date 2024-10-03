@@ -77,7 +77,7 @@ class EATFairseqModule(L.LightningModule):
         test_acc, hamming_score, mAP, cmAP, auroc = self.calculate_metrics(logits, y)
 
         # Logging
-        self.log_dict({'test/loss': loss, 'val/acc': test_acc, 'val/hamming_score': hamming_score, 'test/mAP': mAP, 'val/cmAP': cmAP, 'val/AUROC': auroc})
+        self.log_dict({'test/loss': loss, 'test/acc': test_acc, 'test/hamming_score': hamming_score, 'test/mAP': mAP, 'test/cmAP': cmAP, 'test/AUROC': auroc})
 
     def configure_optimizers(self):
         optimizer = torch.optim.SGD(self.parameters(), lr=self.optim_params["learning_rate"], weight_decay=self.optim_params["weight_decay"], nesterov=True, momentum=0.9)
