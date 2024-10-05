@@ -5,10 +5,10 @@ trust_remote_code: True
 task: multilabel
 
 dataset:
-  name: HSN
+  name: NBP
   width: 1024
   height: 128
-  num_classes: 21
+  num_classes: 51
   in_channels: 1
   num_workers: 3
   val_split: 0.25
@@ -18,16 +18,17 @@ dataset:
 
 path:
   output_dir: /mnt/stud/work/deeplearninglab/ss2024/ssl-1/output
-  data_dir: /mnt/stud/work/deeplearninglab/ss2024/ssl-1/data_birdset/HSN/
+  data_dir: /mnt/stud/work/deeplearninglab/ss2024/ssl-1/data_birdset/NBP/
   model_dir: ./storage/pretrained_models
   hf_path: DBD-research-group/BirdSet
   pretrained_weights_dir: /mnt/stud/work/deeplearninglab/ss2024/ssl-1/pretraining-checkpoints/checkpoint_last.pt
 
 model:
-  learning_rate: 2e-4
-  weight_decay: 5e-2
+  learning_rate: 1e-2
+  weight_decay: 0
   num_epochs: 100
+  zero_vec_penalty: 1
 
 wandb:
   project: Finetuning-BirdSet
-  run_name: HSN-Aleyna-featextr-xavier
+  run_name: NBP-zero-vec-penalty-2

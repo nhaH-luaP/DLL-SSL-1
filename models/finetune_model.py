@@ -16,7 +16,15 @@ from sklearn.metrics import average_precision_score
 
 
 class EATFairseqModule(L.LightningModule):
-    def __init__(self, model, linear_classifier, num_classes, prediction_mode="mean_pooling", optim_params={"weight_decay":5e-4, "learning_rate":1e-1, "n_epochs":1}):
+    def __init__(
+            self, 
+            model, 
+            linear_classifier, 
+            num_classes, 
+            prediction_mode="mean_pooling", 
+            optim_params={"weight_decay":5e-4, "learning_rate":1e-1, "n_epochs":1},
+            zero_vec_penalty=0
+        ):
         super().__init__()
         self.model = model
         self.linear_classifier = linear_classifier
@@ -35,6 +43,8 @@ class EATFairseqModule(L.LightningModule):
         self.accuracy_fn = TopKAccuracy()
         self.auroc_fn = MultilabelAUROC(num_labels=num_classes)
         self.cmap_fn = MultilabelAveragePrecision(num_labels=num_classes, threshold=None, average="macro")
+        
+        self.zero_vec_penalty = zero_vec_penalty
 
         # Set trainable params for finetuning
         self.model.requires_grad_(False)
@@ -52,6 +62,12 @@ class EATFairseqModule(L.LightningModule):
 
         # Calculate Loss
         loss = nn.functional.binary_cross_entropy_with_logits(logits, y)
+        probas = torch.nn.functional.sigmoid(logits)
+        if self.zero_vec_penalty > 0:
+            penalty = self.zero_vec_penalty * (probas < 0.5).all().float()
+            loss += penalty
+            self.log('train/zero_vec_penalty', penalty.item())
+
         probas = torch.nn.functional.sigmoid(logits)
 
         # Logging

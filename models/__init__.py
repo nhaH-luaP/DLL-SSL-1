@@ -27,5 +27,11 @@ def build_pretrained_model(args):
 
     # Combine into one larger model
     optim_params = {"weight_decay": args.model.weight_decay,"learning_rate":args.model.learning_rate, "n_epochs":args.model.num_epochs}
-    model = EATFairseqModule(model=fairseq_model, linear_classifier=linear_classifier, num_classes=args.dataset.num_classes, optim_params=optim_params)
+    model = EATFairseqModule(
+        model=fairseq_model, 
+        linear_classifier=linear_classifier, 
+        num_classes=args.dataset.num_classes, 
+        optim_params=optim_params,
+        zero_vec_penalty=args.model.zero_vec_penalty
+    )
     return model
