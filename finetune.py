@@ -1,6 +1,8 @@
 from utils import seed_everything
 from utils import MetricsCallback, load_yaml_as_omegaconf, build_dataset
 from models import build_pretrained_model
+from data.birdsetwrapper import BirdSetWrapper
+from torch.utils.data import DataLoader
 
 import os
 import json
@@ -37,6 +39,15 @@ def main():
     dm.prepare_data()
     dm.setup(stage="fit")
 
+    train_dataset = BirdSetWrapper(dm.train_dataset)
+    val_dataset = BirdSetWrapper(dm.val_dataset)
+    dm.setup(stage='test')
+    test_dataset = BirdSetWrapper(dm.test_dataset)
+
+    train_loader = DataLoader(train_dataset, batch_size=32, shuffle=True, num_workers=args.dataset.num_workers)
+    val_loader = DataLoader(val_dataset, batch_size=32, shuffle=False, num_workers=args.dataset.num_workers)
+    test_loader = DataLoader(test_dataset, batch_size=32, shuffle=False, num_workers=args.dataset.num_workers)
+
     # Initialize Model
     logging.info(f">>> Initialize Model.")
     model = build_pretrained_model(args)
@@ -45,12 +56,15 @@ def main():
     metrics_callback = MetricsCallback()
 
     # Finetune Model
-    trainer = Trainer(max_epochs=args.model.num_epochs, callbacks=[metrics_callback], logger=wandb_logger)
-    trainer.fit(model=model, datamodule=dm)
+    trainer = Trainer(
+        max_epochs=args.model.num_epochs, 
+        callbacks=[metrics_callback], 
+        logger=wandb_logger
+    )
+    trainer.fit(model, train_loader, val_loader)
 
     # Evaluate Model
-    dm.setup(stage='test')
-    trainer.test(model=model, datamodule=dm)
+    trainer.test(model, test_loader)
 
     # Extract metrics and export into json file
     metrics_dict = {'train_metrics': metrics_callback.train_metrics, 'test_metrics': metrics_callback.test_metrics}

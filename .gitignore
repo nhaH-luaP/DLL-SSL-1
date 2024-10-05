@@ -1,6 +1,7 @@
 # To be done
 .vscode/
 __pycache__/
+*.ipynb_checkpoints/
 
 # directory for birdset data
 data_birdset/

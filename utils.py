@@ -8,7 +8,7 @@ from lightning import Callback
 from omegaconf import OmegaConf
 
 from birdset.datamodule.base_datamodule import DatasetConfig
-from birdset.datamodule.birdset_datamodule import BirdSetDataModule
+from birdset.datamodule.birdset_datamodule import BirdSetDataModule, BirdSetTransformsWrapper
 
 
 def seed_everything(seed: int):
@@ -100,5 +100,9 @@ def build_dataset(args):
             eventlimit=args.dataset.eventlimit,
             sampling_rate=args.dataset.sampling_rate,
         ),
+        # waveform, because spectrogram is created by EAT-fairseq in feature extraction
+        transforms=BirdSetTransformsWrapper(
+            model_type='waveform'
+        )
     )
     return dm

@@ -2,6 +2,7 @@ from models.mixup import Mixup
 from utils import TopKAccuracy
 
 import torch
+import torchaudio
 import torch.nn as nn
 import torch.nn.functional as F
 from torchmetrics.classification import MultilabelAUROC
@@ -41,7 +42,7 @@ class EATFairseqModule(L.LightningModule):
 
     def training_step(self, batch, batch_idx):
         # Perform Mixup and then get the logits
-        x, y = batch['input_values'], batch['labels']
+        x, y = batch
         if x.shape[0] % 2 == 0: # Important due to mixup workflow to have an evenly shaped batch
             x, y = self.mixup_fn(x, y)
         logits = self.get_logits(x)
@@ -57,7 +58,7 @@ class EATFairseqModule(L.LightningModule):
     
     def validation_step(self, batch, batch_idx):
         # Get logits
-        x, y = batch['input_values'], batch['labels']
+        x, y = batch
         logits = self.get_logits(x)
 
         # Calculate Loss
@@ -67,11 +68,18 @@ class EATFairseqModule(L.LightningModule):
         test_acc, hamming_score, mAP, cmAP, auroc  = self.calculate_metrics(logits, y)
 
         # Logging
-        self.log_dict({'val/loss': loss, 'val/acc': test_acc, 'val/hamming_score': hamming_score, 'val/mAP': mAP, 'val/cmAP': cmAP, 'val/AUROC': auroc})
+        self.log_dict({
+            'val/loss': loss, 
+            'val/acc': test_acc, 
+            'val/hamming_score': hamming_score, 
+            'val/mAP': mAP, 
+            'val/cmAP': cmAP, 
+            'val/AUROC': auroc
+        })
     
     def test_step(self, batch, batch_idx):
         # Get logits
-        x, y = batch['input_values'], batch['labels']
+        x, y = batch
         logits = self.get_logits(x)
 
         # Calculate Loss
@@ -81,20 +89,33 @@ class EATFairseqModule(L.LightningModule):
         test_acc, hamming_score, mAP, cmAP, auroc = self.calculate_metrics(logits, y)
 
         # Logging
-        self.log_dict({'test/loss': loss, 'test/acc': test_acc, 'test/hamming_score': hamming_score, 'test/mAP': mAP, 'test/cmAP': cmAP, 'test/AUROC': auroc})
+        self.log_dict({
+            'test/loss': loss, 
+            'test/acc': test_acc, 
+            'test/hamming_score': hamming_score, 
+            'test/mAP': mAP, 'test/cmAP': cmAP, 
+            'test/AUROC': auroc
+        })
 
     def configure_optimizers(self):
         optimizer = torch.optim.SGD(self.parameters(), lr=self.optim_params["learning_rate"], weight_decay=self.optim_params["weight_decay"], nesterov=True, momentum=0.9)
         lr_scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer=optimizer, T_max=self.optim_params["n_epochs"])
         return [optimizer], [lr_scheduler]
     
-    def get_logits(self, x):
-        with torch.no_grad():
-            result = self.model(x, features_only=True, remove_extra_tokens=True, mask=False) #TODO: What about the remove extra tokens option?
-        features = result['x']
-
-        # Different prediction modes to work with the features resulting from the fairseq model. Shape: (Batch-Size, Dim1, Dim2)
-        features = self.reduce_features(features)
+    def get_logits(self, wav):
+        target_length = 1024
+        source = wav
+        
+        n_frames = source.shape[1]
+        diff = target_length - n_frames
+        if diff > 0:
+            m = torch.nn.ZeroPad2d((0, 0, 0, diff)) 
+            source = m(source)
+            
+        elif diff < 0:
+            source = source[:,0:target_length, :]
+                    
+        features = self._extract_features(source)
 
         logits = self.linear_classifier(features)
         return logits
@@ -123,20 +144,23 @@ class EATFairseqModule(L.LightningModule):
         cmAP = self.cmap_fn(logits, y.long())
         auroc = self.auroc_fn(probas, y.long())
         return test_acc, hamming_score, mAP, cmAP, auroc
+    
 
-    def reduce_features(self, features):
-        if self.prediction_mode == "mean_pooling":
-            features = features.mean(dim=1)
-        elif self.prediction_mode == "cls_token":
-            features = features[:, 0]
-        elif self.prediction_mode == "lin_softmax":
-            dtype = features.dtype
-            features = F.logsigmoid(features.float())
-            features = torch.logsumexp(features + features, dim=1) - torch.logsumexp(features + 1e-6, dim=1)
-            features = features.clamp(max=0)
-            features = features - torch.log(-(torch.expm1(features)))
-            features = torch.nan_to_num(features, nan=0, posinf=0, neginf=0)
-            features = features.to(dtype=dtype)
-        else:
-            raise Exception(f"unknown prediction mode {self.prediction_mode}")
-        return features
+    def _extract_features(self, source):
+        granularity = 'utterance'
+        with torch.no_grad():
+            # source = source.unsqueeze(dim=0) #btz=1
+            if granularity == 'all':
+                feats = self.model.extract_features(source, padding_mask=None,mask=False, remove_extra_tokens=False)
+                feats = feats['x']
+            elif granularity == 'frame':
+                feats = self.model.extract_features(source, padding_mask=None,mask=False, remove_extra_tokens=True)
+                feats = feats['x']
+            elif granularity == 'utterance':
+                feats = self.model.extract_features(source, padding_mask=None,mask=False, remove_extra_tokens=False)
+                feats = feats['x']
+                feats = feats[:, 0]
+            else:
+                raise ValueError("Unknown granularity: {}".format(granularity))
+
+        return feats
