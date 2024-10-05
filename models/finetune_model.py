@@ -40,6 +40,9 @@ class EATFairseqModule(L.LightningModule):
         self.model.requires_grad_(False)
         self.linear_classifier.requires_grad_(True)
 
+        # Init weights
+        torch.nn.init.xavier_uniform_(self.linear_classifier.weight)
+
     def training_step(self, batch, batch_idx):
         # Perform Mixup and then get the logits
         x, y = batch

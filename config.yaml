@@ -21,13 +21,13 @@ path:
   data_dir: /mnt/stud/work/deeplearninglab/ss2024/ssl-1/data_birdset/HSN/
   model_dir: ./storage/pretrained_models
   hf_path: DBD-research-group/BirdSet
-  pretrained_weights_dir: /mnt/stud/work/deeplearninglab/ss2024/ssl-1/pretraining-checkpoints/EAT-base_epoch30_pt.pt
+  pretrained_weights_dir: /mnt/stud/work/deeplearninglab/ss2024/ssl-1/pretraining-checkpoints/checkpoint_last.pt
 
 model:
-  learning_rate: 1e-3
+  learning_rate: 2e-4
   weight_decay: 5e-2
   num_epochs: 100
 
 wandb:
   project: Finetuning-BirdSet
-  run_name: finetuning-HSN-Test
+  run_name: HSN-Aleyna-featextr-xavier
