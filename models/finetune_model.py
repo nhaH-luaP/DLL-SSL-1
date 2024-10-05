@@ -49,9 +49,14 @@ class EATFairseqModule(L.LightningModule):
 
         # Calculate Loss
         loss = nn.functional.binary_cross_entropy_with_logits(logits, y)
+        probas = torch.nn.functional.sigmoid(logits)
 
         # Logging
-        self.log_dict({'train/loss': loss.item()})
+        self.log_dict({
+            'train/loss': loss.item(), 
+            'train/max_proba': torch.max(probas).item(), 
+            'train/min_proba': torch.min(probas).item()
+        })
 
         # Return Loss for optimization
         return loss
