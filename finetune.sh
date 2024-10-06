@@ -1,7 +1,7 @@
 #!/bin/bash
-#SBATCH --job-name=EAT-HSN_finetuning
-#SBATCH --output=/mnt/stud/work/deeplearninglab/ss2024/ssl-1/output/logs/finetuning_test.log
-#SBATCH --error=/mnt/stud/work/deeplearninglab/ss2024/ssl-1/output/logs/finetuning_test.err
+#SBATCH --job-name=EAT-NBP
+#SBATCH --output=./finetuning_NBP.log
+#SBATCH --error=./finetuning_NBP.err
 #SBATCH --ntasks=1
 #SBATCH --mem=32gb
 #SBATCH --time=100:00:00
@@ -11,7 +11,7 @@
 
 date;hostname;pwd
 source /mnt/stud/work/python/mconda/39/bin/activate base
-conda activate /mnt/stud/home/hplutz/miniconda3/envs/birdset
+conda activate birdset
 
 srun python finetune.py
     

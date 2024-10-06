@@ -32,6 +32,6 @@ def build_pretrained_model(args):
         linear_classifier=linear_classifier, 
         num_classes=args.dataset.num_classes, 
         optim_params=optim_params,
-        zero_vec_penalty=args.model.zero_vec_penalty
+        pos_weight=args.model.pos_weight
     )
     return model
