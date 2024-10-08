@@ -31,9 +31,9 @@ class EATFairseqModule(L.LightningModule):
                 label_smoothing=0.0,
                 num_classes=num_classes,
             )
-        self.accuracy_fn = TopKAccuracy()
-        self.auroc_fn = MultilabelAUROC(num_labels=num_classes)
-        self.cmap_fn = MultilabelAveragePrecision(num_labels=num_classes, threshold=None, average="macro")
+        self.accuracy_fn = nn.ModuleList([TopKAccuracy() for _ in range(2)])
+        self.auroc_fn = nn.ModuleList([MultilabelAUROC(num_labels=num_classes) for _ in range(2)])
+        self.cmap_fn = nn.ModuleList([MultilabelAveragePrecision(num_labels=num_classes, threshold=None, average="macro") for _ in range(2)])
 
         # Set trainable params for finetuning
         self.model.requires_grad_(False)
@@ -64,7 +64,7 @@ class EATFairseqModule(L.LightningModule):
         loss = nn.functional.binary_cross_entropy_with_logits(logits, y)
 
         # Calculate metrics
-        test_acc, hamming_score, mAP, cmAP, auroc  = self.calculate_metrics(logits, y)
+        test_acc, hamming_score, mAP, cmAP, auroc  = self.calculate_metrics(logits, y, mode='val')
 
         # Logging
         self.log_dict({'val/loss': loss, 'val/acc': test_acc, 'val/hamming_score': hamming_score, 'val/mAP': mAP, 'val/cmAP': cmAP, 'val/AUROC': auroc})
@@ -78,7 +78,7 @@ class EATFairseqModule(L.LightningModule):
         loss = nn.functional.binary_cross_entropy_with_logits(logits, y)
 
         # Calculate metrics
-        test_acc, hamming_score, mAP, cmAP, auroc = self.calculate_metrics(logits, y)
+        test_acc, hamming_score, mAP, cmAP, auroc = self.calculate_metrics(logits, y, mode='test')
 
         # Logging
         self.log_dict({'test/loss': loss, 'test/acc': test_acc, 'test/hamming_score': hamming_score, 'test/mAP': mAP, 'test/cmAP': cmAP, 'test/AUROC': auroc})
@@ -113,15 +113,22 @@ class EATFairseqModule(L.LightningModule):
             (y_true & y_pred).sum(axis=1) / (y_true | y_pred).sum(axis=1)
         ).mean()
     
-    def calculate_metrics(self, logits, y):
+    def calculate_metrics(self, logits, y, mode):
+        if mode == 'val':
+            mode = 0
+        elif mode == 'test':
+            mode = 1
+        else:
+            raise Exception(f"unknown mode {self.mode}")
+
         probas = torch.nn.functional.sigmoid(logits)
         preds = (probas >= 0.5).cpu().numpy().astype(int)
 
-        test_acc = self.accuracy_fn(probas, y)
+        test_acc = self.accuracy_fn[mode](probas, y)
         hamming_score = self._calculate_hamming_score(y_pred=preds, y_true=y.cpu().numpy().astype(int))
         mAP, _ = self._calculate_mAP(target=y.cpu(), output=probas.cpu())
-        cmAP = self.cmap_fn(logits, y.long())
-        auroc = self.auroc_fn(probas, y.long())
+        cmAP = self.cmap_fn[mode](logits, y.long())
+        auroc = self.auroc_fn[mode](probas, y.long())
         return test_acc, hamming_score, mAP, cmAP, auroc
 
     def reduce_features(self, features):
