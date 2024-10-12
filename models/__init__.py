@@ -23,7 +23,12 @@ def build_pretrained_model(args):
     fairseq_model.center = None
 
     # Create Additional Linear Classification Layer
-    linear_classifier = torch.nn.Linear(in_features=768, out_features=args.dataset.num_classes)
+    # linear_classifier = torch.nn.Linear(in_features=768, out_features=args.dataset.num_classes)
+    linear_classifier = torch.nn.Sequential(
+        torch.nn.Linear(in_features=768, out_features=256),
+        torch.nn.ReLU(),
+        torch.nn.Linear(in_features=256, out_features=args.dataset.num_classes)
+    )
 
     # Combine into one larger model
     optim_params = {"weight_decay": args.model.weight_decay,"learning_rate":args.model.learning_rate, "n_epochs":args.model.num_epochs}
@@ -32,6 +37,8 @@ def build_pretrained_model(args):
         linear_classifier=linear_classifier, 
         num_classes=args.dataset.num_classes, 
         optim_params=optim_params,
-        pos_weight=args.model.pos_weight
+        pos_weight=args.model.pos_weight,
+        loss=args.model.loss,
+        granularity=args.model.granularity
     )
     return model

@@ -1,6 +1,6 @@
 import torchmetrics.classification
 from models.mixup import Mixup
-from utils import TopKAccuracy
+from utils import TopKAccuracy, FocalLoss
 
 import numpy as np
 import torch
@@ -23,7 +23,8 @@ class EATFairseqModule(L.LightningModule):
             num_classes, 
             optim_params={"weight_decay":5e-4, "learning_rate":1e-1, "n_epochs":1},
             granularity='utterance',
-            pos_weight=None
+            pos_weight=None,
+            loss='BCE'
         ):
         super().__init__()
         self.model = model
@@ -37,13 +38,26 @@ class EATFairseqModule(L.LightningModule):
         self.linear_classifier.requires_grad_(True)
 
         # Init loss function and metrics
-        if pos_weight is not None:
-            pos_weight = torch.ones(num_classes) * pos_weight
-        self.loss_fn = nn.BCEWithLogitsLoss(pos_weight=pos_weight)
+        if loss == 'BCE':
+            if pos_weight is not None:
+                pos_weight = torch.ones(num_classes) * pos_weight
+            self.loss_fn = nn.BCEWithLogitsLoss(pos_weight=pos_weight)
+        elif loss == 'focal':
+            self.loss_fn = FocalLoss(alpha=2, gamma=2, reduction='mean')
+        else:
+            raise ValueError("Unknown loss function: {}".format(loss))
+        
         self._init_metrics()
 
         # Init weights
-        torch.nn.init.xavier_uniform_(self.linear_classifier.weight)
+        self.linear_classifier.apply(self._init_weights)
+
+
+    def _init_weights(self, m):
+        if isinstance(m, nn.Linear):
+            torch.nn.init.xavier_uniform_(m.weight)
+            if m.bias is not None:
+                torch.nn.init.zeros_(m.bias)
 
 
     def _init_metrics(self):

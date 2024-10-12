@@ -14,22 +14,23 @@ dataset:
   val_split: 0.25
   classlimit: 500
   eventlimit: 1
-  sampling_rate: 32000
+  sampling_rate: 16000
 
 path:
   output_dir: /mnt/stud/work/deeplearninglab/ss2024/ssl-1/output
   data_dir: /mnt/stud/work/deeplearninglab/ss2024/ssl-1/data_birdset/NBP/
   model_dir: ./storage/pretrained_models
   hf_path: DBD-research-group/BirdSet
-  pretrained_weights_dir: /mnt/stud/work/deeplearninglab/ss2024/ssl-1/pretraining-checkpoints/checkpoint_last.pt
+  pretrained_weights_dir: /mnt/stud/work/deeplearninglab/ss2024/ssl-1/pretraining-checkpoints/checkpoint_4_400000.pt
 
 model:
   learning_rate: 2e-4
-  weight_decay: 0
+  weight_decay: 2e-5
   num_epochs: 100
-  zero_vec_penalty: 1
-  pos_weight: 1.2
+  pos_weight: null
+  granularity: utterance
+  loss: BCE
 
 wandb:
   project: Finetuning-BirdSet
-  run_name: NBP-new-loss-04
+  run_name: NBP-non-linear-16kHz

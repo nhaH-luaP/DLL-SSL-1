@@ -2,6 +2,7 @@ import numpy as np
 import random
 import os
 import torch
+import torch.nn as nn
 import torchmetrics
 
 from lightning import Callback
@@ -19,6 +20,45 @@ def seed_everything(seed: int):
     torch.cuda.manual_seed(seed)
     torch.backends.cudnn.deterministic = True
     torch.backends.cudnn.benchmark = False
+
+
+class FocalLoss(nn.Module):
+    def __init__(self, alpha=1, gamma=2, reduction='mean'):
+        """
+        :param alpha: Weighting factor for the positive class (can be a scalar or tensor).
+        :param gamma: Focusing parameter that adjusts the rate at which easy examples are down-weighted.
+        :param reduction: Specifies the reduction to apply to the output ('none', 'mean', or 'sum').
+        """
+        super(FocalLoss, self).__init__()
+        self.alpha = alpha
+        self.gamma = gamma
+        self.reduction = reduction
+
+    def forward(self, logits, targets):
+        """
+        :param logits: Raw model outputs before sigmoid (shape: [batch_size, num_classes])
+        :param targets: Binary ground truth labels (shape: [batch_size, num_classes])
+        """
+        # Apply sigmoid to get probabilities
+        probs = torch.sigmoid(logits)
+        targets = targets.float()
+
+        # Compute the binary cross-entropy loss for each example
+        BCE_loss = nn.functional.binary_cross_entropy_with_logits(logits, targets, reduction='none')
+        
+        # Compute pt (the probability of the true class)
+        pt = targets * probs + (1 - targets) * (1 - probs)
+
+        # Compute the focal loss: FL = -alpha * (1-pt)^gamma * log(pt)
+        F_loss = self.alpha * (1 - pt) ** self.gamma * BCE_loss
+
+        # Apply reduction method
+        if self.reduction == 'mean':
+            return F_loss.mean()
+        elif self.reduction == 'sum':
+            return F_loss.sum()
+        else:
+            return F_loss  # If 'none', return the per-element loss
 
 
 class MetricsCallback(Callback):
