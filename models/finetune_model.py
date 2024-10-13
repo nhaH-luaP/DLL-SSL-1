@@ -68,7 +68,7 @@ class EATFairseqModule(L.LightningModule):
         test_acc, hamming_score, mAP, cmAP, auroc  = self.calculate_metrics(logits, y, mode='val')
 
         # Logging
-        self.log_dict({'val/loss': loss, 'val/t1-acc': test_acc, 'val/hamming_score': hamming_score, 'val/mAP': mAP, 'val/cmAP': cmAP, 'val/AUROC': auroc})
+        self.log_dict({'val/loss': loss, 'val/t1_acc': test_acc, 'val/hamming_score': hamming_score, 'val/mAP': mAP, 'val/cmAP': cmAP, 'val/AUROC': auroc})
     
     def test_step(self, batch, batch_idx):
         # Get logits
@@ -82,7 +82,7 @@ class EATFairseqModule(L.LightningModule):
         test_acc, hamming_score, mAP, cmAP, auroc = self.calculate_metrics(logits, y, mode='test')
 
         # Logging
-        self.log_dict({'test/loss': loss, 'test/t1-acc': test_acc, 'test/hamming_score': hamming_score, 'test/mAP': mAP, 'test/cmAP': cmAP, 'test/AUROC': auroc})
+        self.log_dict({'test/loss': loss, 'test/t1_acc': test_acc, 'test/hamming_score': hamming_score, 'test/mAP': mAP, 'test/cmAP': cmAP, 'test/AUROC': auroc})
 
     def configure_optimizers(self):
         optimizer = torch.optim.SGD(self.parameters(), lr=self.optim_params["learning_rate"], weight_decay=self.optim_params["weight_decay"], nesterov=True, momentum=0.9)
