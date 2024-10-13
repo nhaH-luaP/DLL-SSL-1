@@ -15,25 +15,26 @@ from sklearn.metrics import average_precision_score
 
 
 class EATFairseqModule(L.LightningModule):
-    def __init__(self, model, linear_classifier, num_classes, prediction_mode="mean_pooling", optim_params={"weight_decay":5e-4, "learning_rate":1e-1, "n_epochs":1}):
+    def __init__(self, model, linear_classifier, num_classes, pos_weight=1, prediction_mode="mean_pooling", optim_params={"weight_decay":5e-4, "learning_rate":1e-1, "n_epochs":1}):
         super().__init__()
         self.model = model
         self.linear_classifier = linear_classifier
         self.prediction_mode = prediction_mode
         self.optim_params = optim_params
         self.mixup_fn = Mixup(
-                mixup_alpha=0.5,
-                cutmix_alpha=0.5,
-                cutmix_minmax=None,
-                prob=1.0,
-                switch_prob=0.0,
-                mode="batch",
-                label_smoothing=0.0,
-                num_classes=num_classes,
-            )
+            mixup_alpha=0.5,
+            cutmix_alpha=0.5,
+            cutmix_minmax=None,
+            prob=1.0,
+            switch_prob=0.0,
+            mode="batch",
+            label_smoothing=0.0,
+            num_classes=num_classes,
+        )
         self.accuracy_fn = nn.ModuleList([TopKAccuracy() for _ in range(2)])
         self.auroc_fn = nn.ModuleList([MultilabelAUROC(num_labels=num_classes) for _ in range(2)])
         self.cmap_fn = nn.ModuleList([MultilabelAveragePrecision(num_labels=num_classes, threshold=None, average="macro") for _ in range(2)])
+        self.loss_fn = nn.BCEWithLogitsLoss(pos_weight=torch.tensor([pos_weight]*num_classes))
 
         # Set trainable params for finetuning
         self.model.requires_grad_(False)
@@ -47,7 +48,7 @@ class EATFairseqModule(L.LightningModule):
         logits = self.get_logits(x)
 
         # Calculate Loss
-        loss = nn.functional.binary_cross_entropy_with_logits(logits, y)
+        loss = self.loss_fn(logits, y)
 
         # Logging
         self.log_dict({'train/loss': loss.item()})
@@ -67,7 +68,7 @@ class EATFairseqModule(L.LightningModule):
         test_acc, hamming_score, mAP, cmAP, auroc  = self.calculate_metrics(logits, y, mode='val')
 
         # Logging
-        self.log_dict({'val/loss': loss, 'val/acc': test_acc, 'val/hamming_score': hamming_score, 'val/mAP': mAP, 'val/cmAP': cmAP, 'val/AUROC': auroc})
+        self.log_dict({'val/loss': loss, 'val/t1-acc': test_acc, 'val/hamming_score': hamming_score, 'val/mAP': mAP, 'val/cmAP': cmAP, 'val/AUROC': auroc})
     
     def test_step(self, batch, batch_idx):
         # Get logits
@@ -81,7 +82,7 @@ class EATFairseqModule(L.LightningModule):
         test_acc, hamming_score, mAP, cmAP, auroc = self.calculate_metrics(logits, y, mode='test')
 
         # Logging
-        self.log_dict({'test/loss': loss, 'test/acc': test_acc, 'test/hamming_score': hamming_score, 'test/mAP': mAP, 'test/cmAP': cmAP, 'test/AUROC': auroc})
+        self.log_dict({'test/loss': loss, 'test/t1-acc': test_acc, 'test/hamming_score': hamming_score, 'test/mAP': mAP, 'test/cmAP': cmAP, 'test/AUROC': auroc})
 
     def configure_optimizers(self):
         optimizer = torch.optim.SGD(self.parameters(), lr=self.optim_params["learning_rate"], weight_decay=self.optim_params["weight_decay"], nesterov=True, momentum=0.9)

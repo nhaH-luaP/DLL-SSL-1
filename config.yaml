@@ -15,6 +15,7 @@ dataset:
   classlimit: 500
   eventlimit: 1
   sampling_rate: 32000
+  pos_weight: 20 # pos_weight arg in the BCE loss
 
 path:
   output_dir: /mnt/stud/work/deeplearninglab/ss2024/ssl-1/output
