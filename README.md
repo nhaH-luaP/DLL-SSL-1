@@ -1,40 +1,43 @@
 # DLL-SSL-1
 
+This repository contains code from the SSL-1 group for the Deep Learning Lab course.
+Here, a pretrained fairseq model, like a model pretrained using [EAT](https://git.ies.uni-kassel.de/aalbayrak/eat-fairseq), can be finetuned (in our case, on Xenocanto subsets).
+
 ## Requirements
 Installing all dependencies for this repository is a bit complicated. However, you can try setting up our used environment in this specific order.
 
-1. Create a conda env with python 3.10
+1. Create a conda env with python 3.10.
 ```bash
 conda create -n dll-ssl python=3.10
 conda activate dll-ssl
 ```
 
-2. Install BirdSet
+2. Install BirdSet.
 ```bash
 pip install -e git+https://github.com/DBD-research-group/BirdSet.git#egg=birdset
 ```
 
-3. Install fairseq
+3. Install fairseq.
 ```bash
 cd path/to/fairseq/repo
 pip install -e .
 ```
    
-4. (Eventually upgrade hydra-core and omegaconf if necessary)
-5. Clone EAT repo into the fairseq Repo and install its dependencies
+4. (Upgrade hydra-core and omegaconf, if necessary.)
+5. Clone EAT repo into the fairseq repo and install its dependencies.
 ```bash
 git clone https://github.com/cwx-worst-one/EAT
 cd EAT
 pip install -r requirements.txt
 ```
 
-6. Eventually downgrade numpy
+6. Downgrade numpy, if necessary.
 ```bash
 pip install numpy==1.26.4
 ```
 
 ## Fairseq and Hydra Problem
-There is a workaround in this directory to work around problems arising from using a fairseq model and hydra configuration. Therefore, we do not really use hydra, but a config-yaml file that is manually loaded into the main during the run. Therefore, you cannot really work with command-line args but have to adjust configurations manually in the config.yaml file.
+There is a workaround in this directory, as there are problems arising from using a fairseq model and hydra configuration. Therefore, we do not really use hydra, but a `config.yaml` file that is manually loaded into the main during the run. Therefore, you cannot really work with command-line args, but have to adjust configurations manually in the `config.yaml` file.
 
 <!---
 ## Open problems that i currently see
